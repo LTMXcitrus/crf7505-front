@@ -1,6 +1,6 @@
 .container {
   position: absolute;
-  top: 10%;
+  top: 64px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -13,4 +13,29 @@
 
 .mat-sidenav {
   height: 100%;
+  position: fixed;
+  top: 64px;
+  padding: 0;
+  width: 10%;
+}
+
+.sticky-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.mat-list-item-content {
+  padding: 0 0;
+}
+
+mat-list, mat-list-item, .navigation-button, .mat-drawer-inner-container {
+  width: 100%;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
 }

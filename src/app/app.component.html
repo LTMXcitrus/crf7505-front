@@ -1,16 +1,24 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="sticky-toolbar">
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
   {{title}}
+  <a mat-button routerLink="/"><mat-icon>home</mat-icon></a>
+  <span class="fill-remaining-space"></span>
+  <button *ngIf="!isLoggedIn" (click)="openLoginDialog()" mat-button>Se connecter</button>
 </mat-toolbar>
 
 <mat-sidenav-container class="container">
-  <mat-sidenav mode="side" [(opened)]="opened">
-    Sidenav content
+  <mat-sidenav mode="side" [(opened)]="opened" role="navigation">
+    <mat-nav-list>
+      <span *ngIf="!isLoggedIn" style="padding: 1em">Vous n'êtes pas connecté</span>
+      <a mat-list-item routerLink='/mission' *ngIf="isLoggedIn">Missions</a>
+      <a mat-list-item routerLink='/format' *ngIf="isLoggedIn">Formation</a>
+      <a mat-list-item routerLink='/mot' *ngIf="isLoggedIn">MOT</a>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    hello
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
