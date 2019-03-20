@@ -7,19 +7,25 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private username;
-  private password;
+
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
-    this.username = this.data.username;
-    this.password = this.data.password;
+    this.data.username = '';
+    this.data.password = '';
+    this.data.accountCreation = false;
   }
 
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+
+  switchAccountCreation() {
+    this.data.accountCreation = true;
+    this.data.confirmPassword = '';
   }
 
 }

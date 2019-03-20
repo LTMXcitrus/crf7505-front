@@ -6,7 +6,7 @@ import {AuthService} from './auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'Creuf 7505';
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.isLoggedIn().subscribe(result => this.isLoggedIn = result);
+    this.authService.isLoggedInAsObservable().subscribe(result => this.isLoggedIn = result);
   }
 
   openLoginDialog() {
@@ -33,9 +33,22 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.snackBar.open('Hello ' + result.username, null, {
-        duration: 2000,
-      });
+      if (result.accountCreation) {
+        this.createAccount(result);
+      } else {
+        this.login(result);
+      }
     });
+  }
+
+  private login(loginData: any) {
+    this.authService.login(loginData.username, loginData.password).subscribe(result => console.log(result));
+    this.snackBar.open('Hello ' + loginData.username, null, {
+      duration: 2000,
+    });
+  }
+
+  private createAccount(accountCreationData: any) {
+    this.authService.signUp(accountCreationData.username, accountCreationData.password).subscribe(result => console.log(result));
   }
 }

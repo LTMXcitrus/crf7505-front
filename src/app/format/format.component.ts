@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CrfService} from '../api/crf.service';
 
 @Component({
   selector: 'app-format',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormatComponent implements OnInit {
 
-  constructor() { }
+  private trainings: string;
+
+  constructor(private crfService: CrfService) {
+  }
 
   ngOnInit() {
+    this.loadVolunteerTrainings();
+  }
+
+  loadVolunteerTrainings() {
+    this.crfService.loadAllVolunteerTrainings().subscribe(result => this.trainings = JSON.stringify(result));
   }
 
 }
