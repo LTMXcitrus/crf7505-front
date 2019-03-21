@@ -20,7 +20,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.isLoggedInAsObservable().subscribe(result => this.isLoggedIn = result);
+    this.isLoggedIn = this.authService.isLoggedIn();
+    this.authService.isLoggedInAsObservable().subscribe(result => {
+      this.isLoggedIn = result;
+    });
   }
 
   openLoginDialog() {

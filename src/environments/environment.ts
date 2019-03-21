@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://crf7505-front.appspot.com'
+  baseUrl: 'http://crf7505.appspot.com'
 };
 
 /*

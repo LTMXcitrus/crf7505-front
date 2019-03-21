@@ -3,8 +3,6 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from './material/material.module';
-import {RoutingModule} from './routing.module';
 import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {HomepageComponent} from './homepage/homepage.component';
@@ -14,6 +12,9 @@ import {MotComponent} from './mot/mot.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {JwtInterceptor} from './jwt.interceptor';
+import {AppRoutingModule} from './app.routing.module';
+import {AppMaterialModule} from './material/app.material.module';
+import { DialogSpinnerComponent } from './dialog-spinner/dialog-spinner.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,14 @@ import {JwtInterceptor} from './jwt.interceptor';
     HomepageComponent,
     FormatComponent,
     MissionComponent,
-    MotComponent
+    MotComponent,
+    DialogSpinnerComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    RoutingModule,
+    AppMaterialModule,
+    AppRoutingModule,
     RouterModule,
     FormsModule,
     HttpClientModule
@@ -37,7 +39,7 @@ import {JwtInterceptor} from './jwt.interceptor';
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent]
+  entryComponents: [LoginComponent, DialogSpinnerComponent]
 })
 export class AppModule {
 }
