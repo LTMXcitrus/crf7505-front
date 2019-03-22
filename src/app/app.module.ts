@@ -14,7 +14,9 @@ import {RouterModule} from '@angular/router';
 import {JwtInterceptor} from './jwt.interceptor';
 import {AppRoutingModule} from './app.routing.module';
 import {AppMaterialModule} from './material/app.material.module';
-import { DialogSpinnerComponent } from './dialog-spinner/dialog-spinner.component';
+import {DialogSpinnerComponent} from './dialog-spinner/dialog-spinner.component';
+import {PegassLoginDialogComponent} from './pegass-login-dialog/pegass-login-dialog.component';
+import {RecycleStatusComponent} from './recycle-status/recycle-status.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { DialogSpinnerComponent } from './dialog-spinner/dialog-spinner.componen
     FormatComponent,
     MissionComponent,
     MotComponent,
-    DialogSpinnerComponent
+    DialogSpinnerComponent,
+    PegassLoginDialogComponent,
+    RecycleStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ import { DialogSpinnerComponent } from './dialog-spinner/dialog-spinner.componen
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, DialogSpinnerComponent]
+  entryComponents: [LoginComponent, DialogSpinnerComponent, PegassLoginDialogComponent]
 })
 export class AppModule {
 }

@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {CrfService} from '../api/crf.service';
 import {MatDialog} from '@angular/material';
-import {LoginComponent} from '../login/login.component';
 import {DialogSpinnerComponent} from '../dialog-spinner/dialog-spinner.component';
+import {PegassLogin} from '../model/PegassLogin';
+import {PegassLoginService} from '../pegass-login.service';
+import {Volunteer} from '../model/Volunteer';
 
 @Component({
   selector: 'app-format',
@@ -11,21 +13,24 @@ import {DialogSpinnerComponent} from '../dialog-spinner/dialog-spinner.component
 })
 export class FormatComponent implements OnInit {
 
-  private trainings: string;
+  private volunteers: Volunteer[];
 
   constructor(private crfService: CrfService,
+              private pegassLoginService: PegassLoginService,
               private dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.loadVolunteerTrainings();
+    this.pegassLoginService.getPegassLogin().subscribe(pegassLogin => {
+      this.loadVolunteerTrainings(pegassLogin);
+    });
   }
 
-  loadVolunteerTrainings() {
+  loadVolunteerTrainings(pegassLogin: PegassLogin) {
     const dialogRef = this.dialog.open(DialogSpinnerComponent);
-    this.crfService.loadAllVolunteerTrainings()
+    this.crfService.loadAllVolunteerTrainings(pegassLogin)
       .subscribe(successResponse => {
-          this.trainings = JSON.stringify(successResponse);
+          this.volunteers = successResponse;
           dialogRef.close();
         },
         () => dialogRef.close());

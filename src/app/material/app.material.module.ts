@@ -6,7 +6,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule, MatProgressSpinnerModule,
-  MatSidenavModule, MatSnackBarModule,
+  MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -24,7 +24,10 @@ import {
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatTableModule,
+    MatSortModule
   ],
   exports: [
     MatToolbarModule,
@@ -37,7 +40,10 @@ import {
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatTableModule,
+    MatSortModule
   ]
 })
 export class AppMaterialModule {

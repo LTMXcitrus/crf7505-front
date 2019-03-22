@@ -1,73 +1,56 @@
 <div *ngIf="!data.accountCreation">
   <h1 mat-dialog-title>Se connecter</h1>
-  <div mat-dialog-content>
+  <mat-dialog-content>
     <form class="example-form">
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field>
-              <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field>
-              <input matInput placeholder="Password" [(ngModel)]="data.password" type="password" name="password"
-                     required>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
+
+      <mat-form-field>
+        <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" [(ngModel)]="data.password" type="password" name="password"
+               required>
+      </mat-form-field>
+
     </form>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onCancelClick()">Annuler</button>
-    <button mat-raised-button [mat-dialog-close]="data" color="primary"
-            cdkFocusInitial>Ok
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button mat-stroked-button type="button" color="primary" (click)="switchAccountCreation()">
+      Je n'ai pas encore de compte
     </button>
-    <a href="javascript:void(0)" (click)="switchAccountCreation()">Je n'ai pas encore de compte</a>
-  </div>
+    <button mat-button (click)="onCancelClick()">Annuler</button>
+    <button mat-raised-button [mat-dialog-close]="data" color="primary" cdkFocusInitial style="display:block;">
+      Se connecter
+    </button>
+  </mat-dialog-actions>
 </div>
 
 <div *ngIf="data.accountCreation">
   <h1 mat-dialog-title>Créer un compte</h1>
-  <div mat-dialog-content>
+  <mat-dialog-content>
     <form class="example-form">
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field>
-              <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field>
-              <input matInput placeholder="mot de passe" [(ngModel)]="data.password" type="password" name="password"
-                     required>
-            </mat-form-field>
-            <!--<span *ngIf="data.password.length <6" style="color: red;">Le mot de passe doit contenir au moins 6 caractères</span>-->
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field>
-              <input matInput placeholder="confirmer le mot de passe" [(ngModel)]="data.confirmPassword" type="password"
-                     name="confirmPassword" required>
-              <mat-error *ngIf="data.password!=data.confirmPassword" style="color: red;">Les  deux mots de passe entrés doivent être identiques</mat-error>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
+      <mat-form-field>
+        <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="mot de passe" [(ngModel)]="data.password" type="password" name="password"
+               required>
+      </mat-form-field>
+      <!--<span *ngIf="data.password.length <6" style="color: red;">Le mot de passe doit contenir au moins 6 caractères</span>-->
+      <mat-form-field>
+        <input matInput placeholder="confirmer le mot de passe" [(ngModel)]="data.confirmPassword" type="password"
+               name="confirmPassword" required>
+        <mat-error *ngIf="data.password!=data.confirmPassword" style="color: red;">Les deux mots de passe entrés doivent
+          être identiques
+        </mat-error>
+      </mat-form-field>
     </form>
-  </div>
-  <div mat-dialog-actions>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
     <button mat-button (click)="onCancelClick()" style="display: inline;">Annuler</button>
     <button mat-raised-button [mat-dialog-close]="data" color="primary"
             [disabled]="data.password!=data.confirmPassword"
             cdkFocusInitial>Créer
     </button>
-  </div>
+  </mat-dialog-actions>
 </div>

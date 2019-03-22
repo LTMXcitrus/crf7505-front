@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Identifiants Pegass</h1>
+<div mat-dialog-content>
+  <p>Ces identifiants ne sont pas stockés d'une session à une autre</p>
+  <p>Si vous fermez cet onglet, il faudra les ressaisir</p>
+  <form class="example-form">
+    <mat-form-field>
+      <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Password" [(ngModel)]="data.password" type="password" name="password"
+             required>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Annuler</button>
+  <button mat-raised-button [mat-dialog-close]="data" color="primary"
+          cdkFocusInitial>Ok
+  </button>
+</div>

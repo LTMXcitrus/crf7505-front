@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
 
   openLoginDialog() {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '250px',
       data: {
         username: '',
         password: ''
@@ -36,10 +35,12 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.accountCreation) {
-        this.createAccount(result);
-      } else {
-        this.login(result);
+      if (result) {
+        if (result.accountCreation) {
+          this.createAccount(result);
+        } else {
+          this.login(result);
+        }
       }
     });
   }
