@@ -16,7 +16,8 @@ import {AppRoutingModule} from './app.routing.module';
 import {AppMaterialModule} from './material/app.material.module';
 import {DialogSpinnerComponent} from './dialog-spinner/dialog-spinner.component';
 import {PegassLoginDialogComponent} from './pegass-login-dialog/pegass-login-dialog.component';
-import {RecycleStatusComponent} from './recycle-status/recycle-status.component';
+import {RecycleStatusComponent} from './format/recycle-status/recycle-status.component';
+import { TrainingDetailsComponent } from './format/training-details/training-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {RecycleStatusComponent} from './recycle-status/recycle-status.component'
     MotComponent,
     DialogSpinnerComponent,
     PegassLoginDialogComponent,
-    RecycleStatusComponent
+    RecycleStatusComponent,
+    TrainingDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,9 @@
+<mat-list dense>
+  <ng-container *ngFor="let training of trainings">
+    <mat-list-item *ngIf="!training.upToDate">
+      <mat-icon style="color:red;">clear</mat-icon>
+      {{training.libelle}} à recycler le {{training.recyclingDate}}
+    </mat-list-item>
+  </ng-container>
+</mat-list>
+

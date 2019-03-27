@@ -5,6 +5,7 @@ import {DialogSpinnerComponent} from '../dialog-spinner/dialog-spinner.component
 import {PegassLogin} from '../model/PegassLogin';
 import {PegassLoginService} from '../pegass-login.service';
 import {Volunteer} from '../model/Volunteer';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-format',
@@ -13,7 +14,7 @@ import {Volunteer} from '../model/Volunteer';
 })
 export class FormatComponent implements OnInit {
 
-  private volunteers: Volunteer[];
+  volunteers = new Subject<Volunteer[]>();
 
   constructor(private crfService: CrfService,
               private pegassLoginService: PegassLoginService,
@@ -21,16 +22,17 @@ export class FormatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pegassLoginService.getPegassLogin().subscribe(pegassLogin => {
+    this.pegassLoginService.onPegassLogin().subscribe(pegassLogin => {
       this.loadVolunteerTrainings(pegassLogin);
     });
+    this.pegassLoginService.login();
   }
 
   loadVolunteerTrainings(pegassLogin: PegassLogin) {
     const dialogRef = this.dialog.open(DialogSpinnerComponent);
     this.crfService.loadAllVolunteerTrainings(pegassLogin)
       .subscribe(successResponse => {
-          this.volunteers = successResponse;
+        this.volunteers.next(successResponse);
           dialogRef.close();
         },
         () => dialogRef.close());

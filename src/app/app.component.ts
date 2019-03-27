@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'Creuf 7505';
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
-  private isLoggedIn = false;
+  isLoggedIn = false;
 
   constructor(private authService: AuthService,
               private dialog: MatDialog,

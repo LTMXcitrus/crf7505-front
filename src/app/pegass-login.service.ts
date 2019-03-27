@@ -9,15 +9,20 @@ import {Observable, of, Subject} from 'rxjs';
 })
 export class PegassLoginService {
 
+  private logger = new Subject<PegassLogin>();
+
   private pegassLogin: PegassLogin;
 
   constructor(private dialog: MatDialog) {
   }
 
-  getPegassLogin(): Observable<PegassLogin> {
-    const logger = new Subject<PegassLogin>();
+  onPegassLogin(): Observable<PegassLogin> {
+    return this.logger.asObservable();
+  }
+
+  login() {
     if (this.pegassLogin) {
-      logger.next(this.pegassLogin);
+      this.logger.next(this.pegassLogin);
     } else {
       const dialogRef = this.dialog.open(PegassLoginDialogComponent, {
         data: {
@@ -28,10 +33,9 @@ export class PegassLoginService {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.pegassLogin = result;
-          logger.next(this.pegassLogin);
+          this.logger.next(this.pegassLogin);
         }
       });
     }
-    return logger.asObservable();
   }
 }

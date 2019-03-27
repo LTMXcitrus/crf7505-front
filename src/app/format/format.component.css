@@ -1,0 +1,5 @@
+.mat-tab-header {
+  position: sticky;
+  top: 70px;
+  background-color: inherit;
+}
