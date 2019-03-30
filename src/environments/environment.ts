@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://crf7505.appspot.com'
+  baseUrl: 'http://localhost:8080'
 };
 
 /*
