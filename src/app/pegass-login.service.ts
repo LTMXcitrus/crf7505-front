@@ -20,22 +20,24 @@ export class PegassLoginService {
     return this.logger.asObservable();
   }
 
-  login() {
-    if (this.pegassLogin) {
-      this.logger.next(this.pegassLogin);
-    } else {
-      const dialogRef = this.dialog.open(PegassLoginDialogComponent, {
-        data: {
-          username: '',
-          password: ''
-        }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.pegassLogin = result;
-          this.logger.next(this.pegassLogin);
-        }
-      });
-    }
+  login(): Promise<PegassLogin> {
+    return new Promise(resolve => {
+      if (this.pegassLogin) {
+        resolve(this.pegassLogin);
+      } else {
+        const dialogRef = this.dialog.open(PegassLoginDialogComponent, {
+          data: {
+            username: '',
+            password: ''
+          }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.pegassLogin = result;
+            resolve(this.pegassLogin);
+          }
+        });
+      }
+    });
   }
 }

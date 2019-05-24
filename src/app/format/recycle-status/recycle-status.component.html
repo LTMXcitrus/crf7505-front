@@ -2,7 +2,7 @@
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer">
 </mat-form-field>
 <div class="table-container">
-  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" style="height: 550px; overflow: auto;">
+  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 sticky-header">
 
     <ng-container matColumnDef="firstname">
       <th mat-header-cell mat-sort-header *matHeaderCellDef> Prénom - Nom</th>

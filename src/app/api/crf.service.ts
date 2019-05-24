@@ -21,10 +21,8 @@ export class CrfService {
   loadAllMissions(pegassLogin: PegassLogin, start: string, end: string): Observable<Mission[]> {
     const body = {
       username: pegassLogin.username,
-      password: pegassLogin.password,
-      start: start,
-      end: end
+      password: pegassLogin.password
     };
-    return this.http.post<Mission[]>(environment.baseUrl + '/mission/activities', body);
+    return this.http.post<Mission[]>( `${environment.baseUrl}/mission/activities?start=${start}&end=${end}`, body);
   }
 }
