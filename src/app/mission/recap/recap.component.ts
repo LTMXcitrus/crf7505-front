@@ -3,8 +3,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {CrfService} from '../../api/crf.service';
 import {PegassLoginService} from '../../pegass-login.service';
 import {PegassLogin} from '../../model/PegassLogin';
-import {Mission} from '../../model/Mission';
 import * as moment from 'moment';
+import {MissionDay} from "../../model/MissionDay";
 
 @Component({
   selector: 'app-recap',
@@ -13,7 +13,7 @@ import * as moment from 'moment';
 })
 export class RecapComponent implements OnInit {
 
-  missions: Mission[];
+  missions: MissionDay[];
 
   timeSlotForm = new FormGroup({
     'startDate': new FormControl(new Date()),
@@ -44,8 +44,8 @@ export class RecapComponent implements OnInit {
   private loadMissions(login: PegassLogin) {
     this.crfService.loadAllMissions(
       login,
-      moment(this.startDate.value).format('YYYY-MM-DD'),
-      moment(this.endDate.value).format('YYYY-MM-DD')
+      encodeURIComponent(moment(this.startDate.value).startOf('day').format()),
+      encodeURIComponent(moment(this.endDate.value).endOf('day').format())
     )
       .subscribe(missions => this.missions = missions);
   }

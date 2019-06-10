@@ -15,13 +15,16 @@
   </form>
   <button mat-raised-button (click)="getMissions()">Charger les missions</button>
 
+  <div *ngFor="let day of missions">
+    <h2>{{day.date}}</h2>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let mission of day.missions">
+        <mat-expansion-panel-header>
+          {{mission.name}} ({{mission.ul}}) {{mission | missionHours}}
+        </mat-expansion-panel-header>
+        {{mission.startTime}} - {{mission.endTime}}
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 
-  <mat-accordion *ngIf="missions">
-    <mat-expansion-panel *ngFor="let mission of missions">
-      <mat-expansion-panel-header>
-        {{mission.id}} - {{mission.name}} - {{mission.ul}}
-      </mat-expansion-panel-header>
-      {{mission.startTime}} - {{mission.endTime}}
-    </mat-expansion-panel>
-  </mat-accordion>
 </div>

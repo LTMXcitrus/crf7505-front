@@ -22,10 +22,9 @@ export class FormatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pegassLoginService.onPegassLogin().subscribe(pegassLogin => {
+    this.pegassLoginService.login().then(pegassLogin => {
       this.loadVolunteerTrainings(pegassLogin);
     });
-    this.pegassLoginService.login();
   }
 
   loadVolunteerTrainings(pegassLogin: PegassLogin) {

@@ -21,6 +21,7 @@ import {TrainingDetailsComponent} from './format/training-details/training-detai
 import {RecapComponent} from './mission/recap/recap.component';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
 import {MomentDateAdapter} from "@angular/material-moment-adapter";
+import { MissionHoursPipe } from './mission-hours.pipe';
 
 export const DATE_FORMAT = {
   parse: {
@@ -30,7 +31,7 @@ export const DATE_FORMAT = {
     dateInput: 'DD-MM-YYYY',
     monthYearLabel: 'MMM YYYY',
     dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
+    monthYearA11yLabel: 'DD-MM-YYYY',
   },
 };
 
@@ -46,7 +47,8 @@ export const DATE_FORMAT = {
     PegassLoginDialogComponent,
     RecycleStatusComponent,
     TrainingDetailsComponent,
-    RecapComponent
+    RecapComponent,
+    MissionHoursPipe
   ],
   imports: [
     BrowserModule,

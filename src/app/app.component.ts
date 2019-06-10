@@ -25,34 +25,4 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = result;
     });
   }
-
-  openLoginDialog() {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      data: {
-        username: '',
-        password: ''
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        if (result.accountCreation) {
-          this.createAccount(result);
-        } else {
-          this.login(result);
-        }
-      }
-    });
-  }
-
-  private login(loginData: any) {
-    this.authService.login(loginData.username, loginData.password).subscribe(result => console.log(result));
-    this.snackBar.open('Hello ' + loginData.username, null, {
-      duration: 2000,
-    });
-  }
-
-  private createAccount(accountCreationData: any) {
-    this.authService.signUp(accountCreationData.username, accountCreationData.password).subscribe(result => console.log(result));
-  }
 }
