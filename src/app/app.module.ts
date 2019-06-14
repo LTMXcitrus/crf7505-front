@@ -23,6 +23,7 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material'
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {MissionHoursPipe} from './mission-hours.pipe';
 import {DayPipe} from './day.pipe';
+import { MissionDetailsComponent } from './mission/recap/mission-details/mission-details.component';
 
 
 export const DATE_FORMAT = {
@@ -51,7 +52,8 @@ export const DATE_FORMAT = {
     TrainingDetailsComponent,
     RecapComponent,
     MissionHoursPipe,
-    DayPipe
+    DayPipe,
+    MissionDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,7 @@ export const DATE_FORMAT = {
     {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, DialogSpinnerComponent, PegassLoginDialogComponent]
+  entryComponents: [LoginComponent, DialogSpinnerComponent, PegassLoginDialogComponent, MissionDetailsComponent]
 })
 export class AppModule {
 }

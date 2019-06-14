@@ -17,13 +17,19 @@
 
   <div *ngFor="let day of missions">
     <h2>{{day.date | day}}</h2>
-    <mat-action-list>
+    <mat-list dense>
       <mat-list-item *ngFor="let mission of day.missions">
-        <mat-icon mat-list-icon>add_alert</mat-icon>
-        <h4 mat-line>{{mission.name}} ({{mission.ul}})</h4>
+        <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn" (click)="remove(day, mission)">
+          <mat-icon>close</mat-icon>
+        </button>
+        <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
         <p mat-line> {{mission | missionHours}} </p>
+        <span class="fill-remaining-space"></span>
+        <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
+           target="_blank">Pegass</a>
+        <button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>
       </mat-list-item>
-    </mat-action-list>
+    </mat-list>
   </div>
 
 </div>

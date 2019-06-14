@@ -4,9 +4,9 @@ import {map} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 import {environment} from '../environments/environment';
 import * as jwt_decode from 'jwt-decode';
-import {LoginComponent} from "./login/login.component";
-import {MatDialog, MatSnackBar} from "@angular/material";
-import * as moment from "moment";
+import {LoginComponent} from './login/login.component';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import * as moment from 'moment';
 
 export const JWT_TOKEN_NAME = 'currentUser';
 
@@ -21,7 +21,9 @@ export class AuthService {
               private dialog: MatDialog,
               private snackBar: MatSnackBar) {
     if (this.isTokenExpired()) {
-      this.openLoginDialog()
+      this.openLoginDialog();
+    } else {
+      this.setLoginState(true);
     }
   }
 
@@ -60,7 +62,9 @@ export class AuthService {
   private getTokenExpirationDate(token: string): Date {
     const decoded = jwt_decode<{ exp: number }>(token);
 
-    if (decoded.exp === undefined) return null;
+    if (decoded.exp === undefined) {
+      return null;
+    }
 
     const date = new Date(0);
     date.setUTCSeconds(decoded.exp);
@@ -74,9 +78,13 @@ export class AuthService {
     if (!token) {
       return true;
     }
+    console.log('found auth token');
     const tokenExpirationDate = this.getTokenExpirationDate(token);
-    if (tokenExpirationDate === undefined) return false;
-    return !(tokenExpirationDate.valueOf() > moment().add(1, 'year').toDate().valueOf());
+    console.log('auth token expiration date: ' + tokenExpirationDate);
+    if (tokenExpirationDate === undefined) {
+      return false;
+    }
+    return !(tokenExpirationDate.valueOf() > moment().add(1, 'week').toDate().valueOf());
   }
 
   logout() {
