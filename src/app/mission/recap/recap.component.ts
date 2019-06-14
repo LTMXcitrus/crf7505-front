@@ -4,7 +4,7 @@ import {CrfService} from '../../api/crf.service';
 import {PegassLoginService} from '../../pegass-login.service';
 import {PegassLogin} from '../../model/PegassLogin';
 import * as moment from 'moment';
-import {MissionDay} from "../../model/MissionDay";
+import {MissionDay} from '../../model/MissionDay';
 
 @Component({
   selector: 'app-recap',
@@ -25,6 +25,7 @@ export class RecapComponent implements OnInit {
   }
 
   ngOnInit() {
+    moment.locale('fr');
   }
 
   get startDate() {

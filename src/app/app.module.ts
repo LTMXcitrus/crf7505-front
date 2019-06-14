@@ -19,9 +19,11 @@ import {PegassLoginDialogComponent} from './pegass-login-dialog/pegass-login-dia
 import {RecycleStatusComponent} from './format/recycle-status/recycle-status.component';
 import {TrainingDetailsComponent} from './format/training-details/training-details.component';
 import {RecapComponent} from './mission/recap/recap.component';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
-import {MomentDateAdapter} from "@angular/material-moment-adapter";
-import { MissionHoursPipe } from './mission-hours.pipe';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import {MissionHoursPipe} from './mission-hours.pipe';
+import {DayPipe} from './day.pipe';
+
 
 export const DATE_FORMAT = {
   parse: {
@@ -48,7 +50,8 @@ export const DATE_FORMAT = {
     RecycleStatusComponent,
     TrainingDetailsComponent,
     RecapComponent,
-    MissionHoursPipe
+    MissionHoursPipe,
+    DayPipe
   ],
   imports: [
     BrowserModule,

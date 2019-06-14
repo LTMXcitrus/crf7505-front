@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatSidenav, MatSnackBar} from '@angular/material';
-import {LoginComponent} from './login/login.component';
 import {AuthService} from './auth.service';
 
 @Component({
