@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {Volunteer} from '../../model/Volunteer';
+import {VolunteerTraining} from '../../model/VolunteerTraining';
 import {MatSort, MatTableDataSource} from '@angular/material';
 import {Observable} from "rxjs";
 
@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 })
 export class RecycleStatusComponent implements OnInit {
 
-  @Input() volunteersObservable: Observable<Volunteer[]>;
+  @Input() volunteersObservable: Observable<VolunteerTraining[]>;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
 
@@ -21,7 +21,7 @@ export class RecycleStatusComponent implements OnInit {
 
   ngOnInit() {
     this.volunteersObservable.subscribe(volunteers => {
-      this.dataSource = new MatTableDataSource<Volunteer>(volunteers)
+      this.dataSource = new MatTableDataSource<VolunteerTraining>(volunteers)
       this.dataSource.sort = this.sort;
     });
   }

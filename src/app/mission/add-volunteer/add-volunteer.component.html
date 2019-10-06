@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Ajouter un bénévole</h1>
+<mat-dialog-content>
+  <app-volunteer-form [volunteer]="data"></app-volunteer-form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button (click)="onCancelClick()">Annuler</button>
+  <button mat-raised-button [mat-dialog-close]="data" color="primary" cdkFocusInitial style="display:block;">
+    Ajouter
+  </button>
+</mat-dialog-actions>

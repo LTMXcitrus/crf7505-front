@@ -1,10 +1,10 @@
-import {Training} from './Training';
+import {RoleType} from "./RoleType";
 
 export class Volunteer {
-  constructor(public id: string,
-              public firstname: string,
+  constructor(public firstname: string,
               public lastname: string,
-              public trainings: Training[],
-              public upToDate: boolean) {
+              public role: RoleType,
+              public emailAddress: string) {
+
   }
 }

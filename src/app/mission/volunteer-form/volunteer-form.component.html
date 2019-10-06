@@ -1,0 +1,24 @@
+<form class="form-container">
+
+  <mat-form-field>
+    <input matInput placeholder="Prénom" [(ngModel)]="volunteer.firstname" name="firstname" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Nom" [(ngModel)]="volunteer.lastname" name="lastname" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(value)]="volunteer.role">
+      <mat-option *ngFor="let role of possibleRoles" [value]="role">
+        {{role | translateRole}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="addresse mail" [(ngModel)]="volunteer.emailAddress" name="emailAddress"
+           required>
+  </mat-form-field>
+
+</form>

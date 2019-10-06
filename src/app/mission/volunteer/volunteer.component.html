@@ -1,0 +1,18 @@
+<div class="container">
+  <button mat-raised-button (click)="addVolunteer()">Ajouter un bénévole</button>
+
+  <mat-list dense>
+    <mat-list-item *ngFor="let volunteer of volunteers">
+      <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn" (click)="remove(volunteer)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <h3 mat-line>{{volunteer.firstname}} {{volunteer.lastname}}</h3>
+      <p mat-line> {{volunteer.role | translateRole}} </p>
+      <p class="missing-summary">{{volunteer.emailAddress}}</p>
+      <span class="fill-remaining-space"></span>
+      <button mat-raised-button color="primary" (click)="edit(volunteer)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Modifier la fiche</h1>
+<mat-dialog-content>
+  <app-volunteer-form [volunteer]="volunteer"></app-volunteer-form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button (click)="onCancelClick()">Annuler</button>
+  <button mat-raised-button [mat-dialog-close]="volunteer" color="primary" cdkFocusInitial style="display:block;">
+    Sauvegarder
+  </button>
+</mat-dialog-actions>

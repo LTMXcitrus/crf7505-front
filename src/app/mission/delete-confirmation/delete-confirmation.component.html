@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Confirmation</h1>
+<mat-dialog-content>
+  Êtes-vous sûr de vouloir retirer ce bénévole ({{data.emailAddress}}) de la liste ?
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button (click)="onCancelClick()">Non</button>
+  <button mat-raised-button [mat-dialog-close]="data" color="primary" cdkFocusInitial style="display:block;">
+    Oui
+  </button>
+</mat-dialog-actions>

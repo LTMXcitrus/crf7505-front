@@ -1,0 +1,32 @@
+.container {
+  margin: 1% 5% 5%;
+}
+
+mat-form-field {
+  margin: 1em;
+}
+
+a, button {
+  margin: 0.5em;
+}
+
+.mat-raised-button, .mat-stroked-button {
+  min-width: initial;
+}
+
+.mat-list-left-button {
+  width: initial !important;
+  height: initial !important;
+  font-size: initial !important;
+  box-sizing: initial !important;
+  border-radius: 4px !important;
+  padding: inherit !important;
+}
+
+.mat-list-text {
+  width: 50%;
+}
+
+.missing-summary {
+  width: 100%;
+}

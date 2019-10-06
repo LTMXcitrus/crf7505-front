@@ -5,7 +5,7 @@
     <li>{{getMission().beginDate}}</li>
     <li>{{getMission().endDate}}</li>
     <li>{{getMission().ul}}</li>
-    <li *ngFor="let missingRole of getMission().missingRoles">{{missingRole.type}} - {{missingRole.quantity}}</li>
+    <li *ngFor="let missingRole of getMission().missingRoles">{{missingRole.type | translateRole}} - {{missingRole.quantity}}</li>
   </ul>
 
 </div>

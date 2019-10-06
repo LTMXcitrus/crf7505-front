@@ -4,7 +4,7 @@ import {MatDialog} from '@angular/material';
 import {DialogSpinnerComponent} from '../dialog-spinner/dialog-spinner.component';
 import {PegassLogin} from '../model/PegassLogin';
 import {PegassLoginService} from '../pegass-login.service';
-import {Volunteer} from '../model/Volunteer';
+import {VolunteerTraining} from '../model/VolunteerTraining';
 import {Subject} from "rxjs";
 
 @Component({
@@ -14,7 +14,7 @@ import {Subject} from "rxjs";
 })
 export class FormatComponent implements OnInit {
 
-  volunteers = new Subject<Volunteer[]>();
+  volunteers = new Subject<VolunteerTraining[]>();
 
   constructor(private crfService: CrfService,
               private pegassLoginService: PegassLoginService,

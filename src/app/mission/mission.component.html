@@ -1,5 +1,12 @@
 <mat-tab-group>
   <mat-tab label="Récap">
-    <app-recap></app-recap>
+    <ng-template matTabContent>
+      <app-recap></app-recap>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Bénévoles">
+    <ng-template matTabContent>
+      <app-volunteer></app-volunteer>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>
