@@ -1,3 +1,5 @@
+import {Role} from "./Role";
+
 export class Mission {
   constructor(
     public id: string,
@@ -5,7 +7,10 @@ export class Mission {
     public endDate: any,
     public ul: string,
     public name: string,
-    roles: any[]
+    public roles: Role[],
+    public missingRoles: Role[],
+    public hasCommentedInscriptions: boolean,
+    public hasModifiedHoursInscriptions: boolean
   ) {
 
   }

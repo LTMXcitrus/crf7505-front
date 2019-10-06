@@ -4,7 +4,6 @@ import {environment} from '../../environments/environment';
 import {PegassLogin} from '../model/PegassLogin';
 import {Volunteer} from '../model/Volunteer';
 import {Observable} from 'rxjs';
-import {Mission} from "../model/Mission";
 import {MissionDay} from "../model/MissionDay";
 
 @Injectable({
@@ -25,5 +24,9 @@ export class CrfService {
       password: pegassLogin.password
     };
     return this.http.post<MissionDay[]>( `${environment.baseUrl}/mission/activities?start=${start}&end=${end}`, body);
+  }
+
+  sendRecap(missions: MissionDay[]): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.baseUrl}/mission/recapMissions`, missions);
   }
 }

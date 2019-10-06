@@ -14,6 +14,7 @@
     <mat-error *ngIf="timeSlotForm.invalid">La date de fin doit être après la date de début.</mat-error>
   </form>
   <button mat-raised-button (click)="getMissions()">Charger les missions</button>
+  <button mat-raised-button color="primary" *ngIf="missions" (click)="sendRecap()">Envoyer le recap</button>
 
   <div *ngFor="let day of missions">
     <h2>{{day.date | day}}</h2>
@@ -24,6 +25,7 @@
         </button>
         <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
         <p mat-line> {{mission | missionHours}} </p>
+        <p class="missing-summary">{{missingSummary(mission)}}</p>
         <span class="fill-remaining-space"></span>
         <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
            target="_blank">Pegass</a>

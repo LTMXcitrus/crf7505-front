@@ -22,3 +22,11 @@ a, button {
   border-radius: 4px !important;
   padding: inherit !important;
 }
+
+.mat-list-text {
+  width: 50%;
+}
+
+.missing-summary {
+  width: 100%;
+}

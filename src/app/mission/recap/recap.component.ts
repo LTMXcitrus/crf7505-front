@@ -58,6 +58,7 @@ export class RecapComponent implements OnInit {
   remove(day: MissionDay, mission: Mission) {
     console.log(day);
     day.missions = day.missions.filter(dayMission => dayMission !== mission);
+    this.missions = this.missions.filter(mission => mission.missions.length !== 0);
   }
 
   private loadMissions(login: PegassLogin) {
@@ -74,4 +75,13 @@ export class RecapComponent implements OnInit {
   }
 
 
+  sendRecap() {
+    this.crfService.sendRecap(this.missions).subscribe()
+  }
+
+  missingSummary(mission: Mission) : string {
+    return "Manque " + mission.missingRoles
+      .map(missingRole => missingRole.quantity + " " + missingRole.type)
+      .join(", ");
+  }
 }

@@ -1,5 +1,12 @@
 <h1 mat-dialog-title>{{data.mission.name}}</h1>
 <div mat-dialog-content>
+  <ul>
+    <li>{{getMission().id}}</li>
+    <li>{{getMission().beginDate}}</li>
+    <li>{{getMission().endDate}}</li>
+    <li>{{getMission().ul}}</li>
+    <li *ngFor="let missingRole of getMission().missingRoles">{{missingRole.type}} - {{missingRole.quantity}}</li>
+  </ul>
 
 </div>
 <div mat-dialog-actions>
