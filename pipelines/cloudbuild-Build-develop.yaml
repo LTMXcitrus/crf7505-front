@@ -1,0 +1,10 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+    timeout: "500s"
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build', '--prod']
+    timeout: "500s"
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', 'app.yaml', '--project', 'crf7505-front']
+    timeout: "500s"
