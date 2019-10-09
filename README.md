@@ -26,7 +26,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## To deploy
+## To deploy on DEV
+
+`$ ng build --configuration dev`
+`$ gcloud app deploy app.yaml --project crf7505-front`
+
+## To deploy on PRD
 
 `$ ng build --prod`
-`$ gcloud app deploy app.yaml --project crf7505-front`
+`$ gcloud app deploy app.yaml --project crf7505-front-prod`
