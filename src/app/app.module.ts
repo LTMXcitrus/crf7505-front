@@ -30,6 +30,7 @@ import {VolunteerFormComponent} from './mission/volunteer-form/volunteer-form.co
 import {TranslateRolePipe} from './translate-role.pipe';
 import {DeleteConfirmationComponent} from './mission/delete-confirmation/delete-confirmation.component';
 import { EditVolunteerComponent } from './mission/edit-volunteer/edit-volunteer.component';
+import { RecapMailsComponent } from './mission/recap-mails/recap-mails.component';
 
 
 export const DATE_FORMAT = {
@@ -65,7 +66,8 @@ export const DATE_FORMAT = {
     VolunteerFormComponent,
     TranslateRolePipe,
     DeleteConfirmationComponent,
-    EditVolunteerComponent
+    EditVolunteerComponent,
+    RecapMailsComponent
   ],
   imports: [
     BrowserModule,

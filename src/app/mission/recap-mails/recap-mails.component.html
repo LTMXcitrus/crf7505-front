@@ -1,0 +1,10 @@
+<mat-tab-group>
+  <mat-tab *ngFor="let mail of crfMails" [label]="mail.recipient">
+    <div class="container">
+      <button mat-raised-button (click)="sendRecap()">Envoyer le récap</button>
+      <span>[{{mail.subject}}]</span>
+      <br/>
+      <div [innerHTML]="mail.text"></div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
