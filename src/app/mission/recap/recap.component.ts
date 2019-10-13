@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CrfService} from '../../api/crf.service';
 import {PegassLoginService} from '../../pegass-login.service';
@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material';
 import {MissionDetailsComponent} from './mission-details/mission-details.component';
 import {Mission} from '../../model/Mission';
 import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.component';
+import {CrfMail} from "../../model/CrfMail";
 
 @Component({
   selector: 'app-recap',
@@ -17,12 +18,16 @@ import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.compon
 })
 export class RecapComponent implements OnInit {
 
-  missions: MissionDay[];
+  @Output() missionsLoaded = new EventEmitter<MissionDay[]>();
+  @Output() mailsCreated = new EventEmitter<CrfMail[]>();
+  @Input() missions: MissionDay[];
 
   timeSlotForm = new FormGroup({
     'startDate': new FormControl(new Date()),
     'endDate': new FormControl(new Date())
   });
+
+  crfMails: CrfMail[];
 
   constructor(private crfService: CrfService,
               private pegassLoginService: PegassLoginService,
@@ -69,17 +74,19 @@ export class RecapComponent implements OnInit {
       encodeURIComponent(moment(this.endDate.value).endOf('day').format())
     )
       .subscribe(missions => {
-        this.missions = missions;
+        this.missionsLoaded.emit(missions);
         spinner.close();
       });
   }
 
 
   sendRecap() {
-    this.crfService.sendRecap(this.missions).subscribe()
+    this.crfService.generateMails(this.missions).subscribe(crfMails => {
+      this.mailsCreated.emit(crfMails);
+    })
   }
 
-  missingSummary(mission: Mission) : string {
+  missingSummary(mission: Mission): string {
     return "Manque " + mission.missingRoles
       .map(missingRole => missingRole.quantity + " " + missingRole.type)
       .join(", ");

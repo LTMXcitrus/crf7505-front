@@ -1,12 +1,15 @@
-<mat-tab-group>
+<mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab">
   <mat-tab label="Récap">
     <ng-template matTabContent>
-      <app-recap></app-recap>
+      <app-recap [missions]="missions" (missionsLoaded)="missions = $event" (mailsCreated)="whenMailsCreated($event)"></app-recap>
     </ng-template>
   </mat-tab>
   <mat-tab label="Bénévoles">
     <ng-template matTabContent>
       <app-volunteer></app-volunteer>
     </ng-template>
+  </mat-tab>
+  <mat-tab label="Mails">
+      <app-recap-mails [crfMails]="crfMails"></app-recap-mails>
   </mat-tab>
 </mat-tab-group>
