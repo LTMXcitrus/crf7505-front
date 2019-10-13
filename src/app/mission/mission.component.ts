@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CrfMail} from "../model/CrfMail";
+import {MissionDay} from "../model/MissionDay";
 
 @Component({
   selector: 'app-mission',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MissionComponent implements OnInit {
 
-  constructor() { }
+  crfMails: CrfMail[];
+  missions: MissionDay[];
+  selectedTab = 0;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  whenMailsCreated(mails: CrfMail[]) {
+    this.crfMails = mails;
+    this.selectedTab = 2;
+  }
 }

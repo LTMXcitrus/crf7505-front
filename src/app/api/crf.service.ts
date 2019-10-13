@@ -6,6 +6,7 @@ import {VolunteerTraining} from '../model/VolunteerTraining';
 import {Observable} from 'rxjs';
 import {MissionDay} from "../model/MissionDay";
 import {Volunteer} from "../model/Volunteer";
+import {CrfMail} from "../model/CrfMail";
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class CrfService {
     return this.http.post<MissionDay[]>( `${environment.baseUrl}/mission/activities?start=${start}&end=${end}`, body);
   }
 
-  sendRecap(missions: MissionDay[]): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.baseUrl}/mission/recapMissions`, missions);
+  generateMails(missions: MissionDay[]): Observable<CrfMail[]> {
+    return this.http.post<CrfMail[]>(`${environment.baseUrl}/mission/recapMissions`, missions);
   }
 
   retrieveVolunteers(): Observable<Volunteer[]> {
@@ -42,5 +43,9 @@ export class CrfService {
 
   removeVolunteer(volunteer: Volunteer): Observable<boolean> {
     return this.http.post<boolean>(`${environment.baseUrl}/volunteer/remove`, volunteer)
+  }
+
+  sendRecap(crfMails: CrfMail[]): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.baseUrl}/mission/sendRecap`, crfMails)
   }
 }
