@@ -1,4 +1,4 @@
-import {Role} from "./Role";
+import {Role} from './Role';
 
 export class Mission {
   constructor(
@@ -10,7 +10,8 @@ export class Mission {
     public roles: Role[],
     public missingRoles: Role[],
     public hasCommentedInscriptions: boolean,
-    public hasModifiedHoursInscriptions: boolean
+    public hasModifiedHoursInscriptions: boolean,
+    public date: string
   ) {
 
   }

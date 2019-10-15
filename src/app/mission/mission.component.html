@@ -1,8 +1,10 @@
+<button mat-raised-button (click)="click()">clic!</button>
 <mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab">
   <mat-tab label="Récap">
-    <ng-template matTabContent>
-      <app-recap [missions]="missions" (missionsLoaded)="missions = $event" (mailsCreated)="whenMailsCreated($event)"></app-recap>
-    </ng-template>
+    <app-recap [missions]="missions"
+               (missionsLoaded)="missions = $event"
+               (mailsCreated)="whenMailsCreated($event)"
+               (removeMission)="removeMission($event)"></app-recap>
   </mat-tab>
   <mat-tab label="Bénévoles">
     <ng-template matTabContent>
@@ -10,6 +12,6 @@
     </ng-template>
   </mat-tab>
   <mat-tab label="Mails">
-      <app-recap-mails [crfMails]="crfMails"></app-recap-mails>
+    <app-recap-mails [crfMails]="crfMails"></app-recap-mails>
   </mat-tab>
 </mat-tab-group>

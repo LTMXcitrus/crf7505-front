@@ -29,8 +29,9 @@ import {AddVolunteerComponent} from './mission/add-volunteer/add-volunteer.compo
 import {VolunteerFormComponent} from './mission/volunteer-form/volunteer-form.component';
 import {TranslateRolePipe} from './translate-role.pipe';
 import {DeleteConfirmationComponent} from './mission/delete-confirmation/delete-confirmation.component';
-import { EditVolunteerComponent } from './mission/edit-volunteer/edit-volunteer.component';
-import { RecapMailsComponent } from './mission/recap-mails/recap-mails.component';
+import {EditVolunteerComponent} from './mission/edit-volunteer/edit-volunteer.component';
+import {RecapMailsComponent} from './mission/recap-mails/recap-mails.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 
 export const DATE_FORMAT = {
@@ -77,7 +78,8 @@ export const DATE_FORMAT = {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CKEditorModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
