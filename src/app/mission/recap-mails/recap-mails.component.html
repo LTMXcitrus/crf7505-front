@@ -4,6 +4,7 @@
       <button mat-raised-button (click)="sendRecap()">Envoyer le récap</button>
       <span>[{{mail.subject}}]</span>
       <br/>
+<!--      <ckeditor [editor]="editor" [data]="mail.text"></ckeditor>-->
       <div [innerHTML]="mail.text"></div>
     </div>
   </mat-tab>

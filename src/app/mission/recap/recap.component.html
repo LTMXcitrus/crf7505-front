@@ -16,12 +16,12 @@
   <button mat-raised-button (click)="getMissions()">Charger les missions</button>
   <button mat-raised-button color="primary" *ngIf="missions" (click)="sendRecap()">Envoyer le recap</button>
 
-  <div *ngFor="let day of missions">
-    <h2>{{day.date | day}}</h2>
+  <div *ngFor="let day of missionsByDay | keyvalue">
+    <h2>{{day.key | day}}</h2>
     <mat-list dense>
-      <mat-list-item *ngFor="let mission of day.missions">
+      <mat-list-item *ngFor="let mission of day.value">
         <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn"
-                (click)="remove(day, mission)">
+                (click)="remove(day.key, mission)">
           <mat-icon>close</mat-icon>
         </button>
         <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>

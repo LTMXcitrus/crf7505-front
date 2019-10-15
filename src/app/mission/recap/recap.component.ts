@@ -4,12 +4,12 @@ import {CrfService} from '../../api/crf.service';
 import {PegassLoginService} from '../../pegass-login.service';
 import {PegassLogin} from '../../model/PegassLogin';
 import * as moment from 'moment';
-import {MissionDay} from '../../model/MissionDay';
 import {MatDialog} from '@angular/material';
 import {MissionDetailsComponent} from './mission-details/mission-details.component';
 import {Mission} from '../../model/Mission';
 import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.component';
-import {CrfMail} from "../../model/CrfMail";
+import {CrfMail} from '../../model/CrfMail';
+import {groupBy} from '../../utils';
 
 @Component({
   selector: 'app-recap',
@@ -18,16 +18,17 @@ import {CrfMail} from "../../model/CrfMail";
 })
 export class RecapComponent implements OnInit {
 
-  @Output() missionsLoaded = new EventEmitter<MissionDay[]>();
+  @Output() missionsLoaded = new EventEmitter<Mission[]>();
   @Output() mailsCreated = new EventEmitter<CrfMail[]>();
-  @Input() missions: MissionDay[];
+  @Output() removeMission = new EventEmitter<Mission>();
+  @Input() missions: Mission[];
+
+  missionsByDay: Map<string, Mission[]> = new Map();
 
   timeSlotForm = new FormGroup({
     'startDate': new FormControl(new Date()),
     'endDate': new FormControl(new Date())
   });
-
-  crfMails: CrfMail[];
 
   constructor(private crfService: CrfService,
               private pegassLoginService: PegassLoginService,
@@ -36,6 +37,18 @@ export class RecapComponent implements OnInit {
 
   ngOnInit() {
     moment.locale('fr');
+    this.groupByDay(this.missions);
+  }
+
+  private groupByDay(missions: Mission[]) {
+    if (missions) {
+      const missionsByDay = groupBy('date')(missions);
+      const map = new Map();
+      Object.keys(missionsByDay).forEach(key => {
+        map.set(key, missionsByDay[key]);
+      });
+      this.missionsByDay = map;
+    }
   }
 
   get startDate() {
@@ -60,10 +73,10 @@ export class RecapComponent implements OnInit {
     });
   }
 
-  remove(day: MissionDay, mission: Mission) {
-    console.log(day);
-    day.missions = day.missions.filter(dayMission => dayMission !== mission);
-    this.missions = this.missions.filter(mission => mission.missions.length !== 0);
+  remove(day: string, mission: Mission) {
+    this.removeMission.emit(mission);
+    this.groupByDay(this.missions);
+
   }
 
   private loadMissions(login: PegassLogin) {
@@ -75,6 +88,7 @@ export class RecapComponent implements OnInit {
     )
       .subscribe(missions => {
         this.missionsLoaded.emit(missions);
+        this.groupByDay(missions);
         spinner.close();
       });
   }
@@ -83,12 +97,12 @@ export class RecapComponent implements OnInit {
   sendRecap() {
     this.crfService.generateMails(this.missions).subscribe(crfMails => {
       this.mailsCreated.emit(crfMails);
-    })
+    });
   }
 
   missingSummary(mission: Mission): string {
-    return "Manque " + mission.missingRoles
-      .map(missingRole => missingRole.quantity + " " + missingRole.type)
-      .join(", ");
+    return 'Manque ' + mission.missingRoles
+      .map(missingRole => missingRole.quantity + ' ' + missingRole.type)
+      .join(', ');
   }
 }
