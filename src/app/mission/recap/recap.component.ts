@@ -10,6 +10,7 @@ import {Mission} from '../../model/Mission';
 import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.component';
 import {CrfMail} from '../../model/CrfMail';
 import {groupBy} from '../../utils';
+import {DialogMailEditorComponent} from '../dialog-mail-editor/dialog-mail-editor.component';
 
 @Component({
   selector: 'app-recap',
@@ -80,7 +81,7 @@ export class RecapComponent implements OnInit {
   }
 
   private loadMissions(login: PegassLogin) {
-    const spinner = this.dialog.open(DialogSpinnerComponent);
+    const spinner = this.dialog.open(DialogSpinnerComponent, {data: 'Récupération des données de Pegass...'});
     this.crfService.loadAllMissions(
       login,
       encodeURIComponent(moment(this.startDate.value).startOf('day').format()),
@@ -95,8 +96,15 @@ export class RecapComponent implements OnInit {
 
 
   sendRecap() {
-    this.crfService.generateMails(this.missions).subscribe(crfMails => {
-      this.mailsCreated.emit(crfMails);
+    const mailEditorRef = this.dialog.open(DialogMailEditorComponent, {data: {header: '', footer: ''}});
+    mailEditorRef.afterClosed().subscribe(data => {
+      if (data) {
+        const ref = this.dialog.open(DialogSpinnerComponent, {data: 'Génération des mails...'});
+        this.crfService.generateMails(this.missions, data.header, data.footer).subscribe(crfMails => {
+          this.mailsCreated.emit(crfMails);
+          ref.close();
+        });
+      }
     });
   }
 

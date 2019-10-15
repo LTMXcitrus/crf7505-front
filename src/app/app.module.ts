@@ -32,6 +32,7 @@ import {DeleteConfirmationComponent} from './mission/delete-confirmation/delete-
 import {EditVolunteerComponent} from './mission/edit-volunteer/edit-volunteer.component';
 import {RecapMailsComponent} from './mission/recap-mails/recap-mails.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import { DialogMailEditorComponent } from './mission/dialog-mail-editor/dialog-mail-editor.component';
 
 
 export const DATE_FORMAT = {
@@ -68,7 +69,8 @@ export const DATE_FORMAT = {
     TranslateRolePipe,
     DeleteConfirmationComponent,
     EditVolunteerComponent,
-    RecapMailsComponent
+    RecapMailsComponent,
+    DialogMailEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -78,8 +80,7 @@ export const DATE_FORMAT = {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    CKEditorModule
+    HttpClientModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
@@ -94,7 +95,8 @@ export const DATE_FORMAT = {
     MissionDetailsComponent,
     AddVolunteerComponent,
     EditVolunteerComponent,
-    DeleteConfirmationComponent
+    DeleteConfirmationComponent,
+    DialogMailEditorComponent
   ]
 })
 export class AppModule {

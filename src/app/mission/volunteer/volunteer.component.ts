@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {CrfService} from "../../api/crf.service";
-import {Volunteer} from "../../model/Volunteer";
-import {MatDialog} from "@angular/material";
-import {AddVolunteerComponent} from "../add-volunteer/add-volunteer.component";
-import {DeleteConfirmationComponent} from "../delete-confirmation/delete-confirmation.component";
-import {EditVolunteerComponent} from "../edit-volunteer/edit-volunteer.component";
+import {CrfService} from '../../api/crf.service';
+import {Volunteer} from '../../model/Volunteer';
+import {MatDialog} from '@angular/material';
+import {AddVolunteerComponent} from '../add-volunteer/add-volunteer.component';
+import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirmation.component';
+import {EditVolunteerComponent} from '../edit-volunteer/edit-volunteer.component';
+import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.component';
 
 @Component({
   selector: 'app-volunteer',
@@ -20,47 +21,51 @@ export class VolunteerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.crfService.retrieveVolunteers().subscribe(volunteers => this.volunteers = volunteers)
+    const spinnerRef = this.dialog.open(DialogSpinnerComponent)
+    this.crfService.retrieveVolunteers().subscribe(volunteers => {
+      this.volunteers = volunteers;
+      spinnerRef.close();
+    });
   }
 
   addVolunteer() {
     const dialogRef = this.dialog.open(AddVolunteerComponent);
     dialogRef.afterClosed().subscribe(volunteer => {
       if (volunteer) {
-        this.saveVolunteer(volunteer)
+        this.saveVolunteer(volunteer);
       }
-    })
+    });
   }
 
   remove(volunteer: Volunteer) {
-    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {data: volunteer})
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {data: volunteer});
     dialogRef.afterClosed().subscribe(volunteer => {
       if (volunteer) {
-        this.crfService.removeVolunteer(volunteer).subscribe(() => this.volunteers = this.volunteers.filter(v => v !== volunteer))
+        this.crfService.removeVolunteer(volunteer).subscribe(() => this.volunteers = this.volunteers.filter(v => v !== volunteer));
       }
-    })
+    });
   }
 
 
   private saveVolunteer(volunteer: Volunteer) {
-    this.crfService.saveVolunteer(volunteer).subscribe(volunteer => this.volunteers.push(volunteer))
+    this.crfService.saveVolunteer(volunteer).subscribe(volunteer => this.volunteers.push(volunteer));
   }
 
   edit(volunteer: Volunteer) {
     const dialogRef = this.dialog.open(EditVolunteerComponent, {
       data: volunteer
-    })
+    });
     dialogRef.afterClosed().subscribe(data => {
-      if(data) {
-        this.editVolunteer(data)
+      if (data) {
+        this.editVolunteer(data);
       }
-    })
+    });
   }
 
   private editVolunteer(volunteer: any) {
     this.crfService.saveVolunteer(volunteer).subscribe(volunteer => {
-      this.volunteers = this.volunteers.filter(v => v.emailAddress !== volunteer.emailAddress)
-      this.volunteers.push(volunteer)
-    })
+      this.volunteers = this.volunteers.filter(v => v.emailAddress !== volunteer.emailAddress);
+      this.volunteers.push(volunteer);
+    });
   }
 }
