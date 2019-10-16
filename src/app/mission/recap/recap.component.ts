@@ -96,11 +96,12 @@ export class RecapComponent implements OnInit {
 
 
   sendRecap() {
-    const mailEditorRef = this.dialog.open(DialogMailEditorComponent, {data: {header: '', footer: ''}});
+    const mailEditorRef = this.dialog.open(DialogMailEditorComponent, {data: {header: '', footer: '', subject: ''}});
     mailEditorRef.afterClosed().subscribe(data => {
       if (data) {
+        console.log(data)
         const ref = this.dialog.open(DialogSpinnerComponent, {data: 'Génération des mails...'});
-        this.crfService.generateMails(this.missions, data.header, data.footer).subscribe(crfMails => {
+        this.crfService.generateMails(this.missions, data.subject, data.header, data.footer).subscribe(crfMails => {
           this.mailsCreated.emit(crfMails);
           ref.close();
         });

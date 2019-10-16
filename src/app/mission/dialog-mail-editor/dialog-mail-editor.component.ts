@@ -8,10 +8,17 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class DialogMailEditorComponent implements OnInit {
 
+  header: string;
+  footer: string;
+  subject: string;
+
   constructor(public dialogRef: MatDialogRef<DialogMailEditorComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: {header: string, footer: string, subject: string}) { }
 
   ngOnInit() {
+    this.header = this.data.header;
+    this.footer = this.data.footer;
+    this.subject = this.data.subject;
   }
 
   onCancelClick(): void {

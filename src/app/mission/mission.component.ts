@@ -24,6 +24,7 @@ export class MissionComponent implements OnInit {
   }
 
   whenMailsCreated(mails: CrfMail[]) {
+    console.log('new mails created', this.selectedTab)
     this.crfMails = mails;
     this.selectedTab = 2;
   }
