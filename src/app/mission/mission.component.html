@@ -1,4 +1,4 @@
-<mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab">
+<mat-tab-group mat-align-tabs="center" [(selectedIndex)]="selectedTab">
   <mat-tab label="Récap">
     <app-recap [missions]="missions"
                (missionsLoaded)="missions = $event"

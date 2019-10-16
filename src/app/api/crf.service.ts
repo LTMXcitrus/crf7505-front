@@ -28,10 +28,11 @@ export class CrfService {
     return this.http.post<Mission[]>( `${environment.baseUrl}/mission/activities?start=${start}&end=${end}`, body);
   }
 
-  generateMails(missions: Mission[], header: string, footer: string): Observable<CrfMail[]> {
+  generateMails(missions: Mission[], subject: string, header: string, footer: string): Observable<CrfMail[]> {
     const body = {
       header: header,
       footer: footer,
+      subject: subject,
       missions: missions
     }
     return this.http.post<CrfMail[]>(`${environment.baseUrl}/mission/recapMissions`, body);
