@@ -1,0 +1,14 @@
+mat-dialog-content {
+  width: 150px;
+  height: 150px;
+}
+
+.parent {
+  width: 100%;
+  text-align: center;
+}
+
+.child {
+  display: inline-block;
+  margin: 2px;
+}

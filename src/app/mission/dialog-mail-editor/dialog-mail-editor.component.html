@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Préparer les mails</h1>
+<mat-dialog-content>
+  <form class="example-form">
+
+    <mat-form-field class="text-area">
+      <input matInput placeholder="Sujet du mail" [(ngModel)]="subject" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+
+    <p>Bonjour <i>prénom</i>,</p>
+
+    <mat-form-field class="text-area">
+      <textarea matInput placeholder="En-tête" [(ngModel)]="header" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+
+    <p>Voici les missions de la semaine:</p>
+    <p>...</p>
+
+    <mat-form-field class="text-area">
+      <textarea matInput placeholder="Signature" [(ngModel)]="footer" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button (click)="onCancelClick()">Annuler</button>
+  <button mat-raised-button [mat-dialog-close]="{header: header, footer: footer, subject: subject}" color="primary" cdkFocusInitial style="display:block;">
+    Générer les mails
+  </button>
+</mat-dialog-actions>
