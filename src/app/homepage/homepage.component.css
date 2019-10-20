@@ -1,0 +1,25 @@
+.homepage-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  flex-wrap: wrap;
+}
+.element {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding:4em;
+  border-radius: 5px;
+}
+
+.element:hover {
+  background-color: #e6e6e6;
+}
+
+mat-icon {
+  transform: scale(4);
+  margin: 1.5em;
+}

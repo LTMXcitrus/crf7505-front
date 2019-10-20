@@ -6,15 +6,16 @@
   <a mat-button routerLink="/"><mat-icon>home</mat-icon></a>
   <span class="fill-remaining-space"></span>
   <button *ngIf="!isLoggedIn" (click)="openLoginDialog()" mat-button>Se connecter</button>
+  <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Se déconnecter</button>
 </mat-toolbar>
 
 <mat-sidenav-container class="container">
-  <mat-sidenav mode="side" role="navigation">
+  <mat-sidenav mode="over" role="navigation">
     <mat-nav-list>
       <span *ngIf="!isLoggedIn" style="padding: 1em">Vous n'êtes pas connecté</span>
-      <a mat-list-item routerLink='/mission' *ngIf="isLoggedIn">Missions</a>
-      <a mat-list-item routerLink='/format' *ngIf="isLoggedIn">Formation</a>
-      <a mat-list-item routerLink='/mot' *ngIf="isLoggedIn">MOT</a>
+      <a (click)="sidenav.toggle()" mat-list-item routerLink='/mission' *ngIf="isLoggedIn">Missions</a>
+      <a (click)="sidenav.toggle()" mat-list-item routerLink='/format' *ngIf="isLoggedIn">Formation</a>
+      <a (click)="sidenav.toggle()" mat-list-item routerLink='/mot' *ngIf="isLoggedIn">MOT</a>
     </mat-nav-list>
   </mat-sidenav>
 

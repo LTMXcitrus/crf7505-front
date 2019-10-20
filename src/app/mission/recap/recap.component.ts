@@ -11,6 +11,7 @@ import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.compon
 import {CrfMail} from '../../model/CrfMail';
 import {groupBy} from '../../utils';
 import {DialogMailEditorComponent} from '../dialog-mail-editor/dialog-mail-editor.component';
+import {TranslateRolePipe} from "../../translate-role.pipe";
 
 @Component({
   selector: 'app-recap',
@@ -87,11 +88,16 @@ export class RecapComponent implements OnInit {
       encodeURIComponent(moment(this.startDate.value).startOf('day').format()),
       encodeURIComponent(moment(this.endDate.value).endOf('day').format())
     )
-      .subscribe(missions => {
+      .subscribe(
+        missions => {
         this.missionsLoaded.emit(missions);
         this.groupByDay(missions);
         spinner.close();
-      });
+      },
+        () => {
+          this.pegassLoginService.wrongLogin();
+          spinner.close();
+        });
   }
 
 
@@ -107,11 +113,5 @@ export class RecapComponent implements OnInit {
         });
       }
     });
-  }
-
-  missingSummary(mission: Mission): string {
-    return 'Manque ' + mission.missingRoles
-      .map(missingRole => missingRole.quantity + ' ' + missingRole.type)
-      .join(', ');
   }
 }

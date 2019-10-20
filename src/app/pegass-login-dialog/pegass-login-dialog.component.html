@@ -4,10 +4,20 @@
   <p>Si vous fermez cet onglet, il faudra les ressaisir</p>
   <form class="example-form">
     <mat-form-field>
-      <input matInput placeholder="Username" [(ngModel)]="data.username" name="pegass-username" required>
+      <input matInput
+             placeholder="Username"
+             name="pegass-username"
+             [(ngModel)]="data.username"
+             (keyup.enter)="dialogRef.close(data)"
+             required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Password" [(ngModel)]="data.password" type="password" name="pegass-password"
+      <input matInput
+             placeholder="Password"
+             name="pegass-password"
+             type="password"
+             [(ngModel)]="data.password"
+             (keyup.enter)="dialogRef.close(data)"
              required>
     </mat-form-field>
   </form>

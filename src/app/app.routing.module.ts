@@ -10,7 +10,7 @@ import {MotComponent} from './mot/mot.component';
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'format', component: FormatComponent, canActivate: [AuthGuard]},
-  {path: 'mission', component: MissionComponent, /*canActivate: [AuthGuard]*/},
+  {path: 'mission', component: MissionComponent, canActivate: [AuthGuard]},
   {path: 'mot', component: MotComponent, canActivate: [AuthGuard]}
 ];
 

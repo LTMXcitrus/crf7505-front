@@ -40,4 +40,8 @@ export class PegassLoginService {
       }
     });
   }
+
+  wrongLogin() {
+    this.pegassLogin = undefined;
+  }
 }
