@@ -1,0 +1,8 @@
+<button mat-button><mat-icon color="primary">edit</mat-icon>
+  <span *ngIf="mission.missingRoles.length !== 0"> {{missingSummary()}}</span>
+  <span *ngIf="completeWithModifiedHours && !completeWithComments"
+        style="color: orange;"> Complet - Horaires modifiés</span>
+  <span *ngIf="completeWithComments && !completeWithModifiedHours"
+        style="color: green;"> Complet - Commentaires présents</span>
+  <span *ngIf="completeWithComments && completeWithModifiedHours" style="color: red;"> Complet - Commentaires présents + horaires modifiés</span>
+</button>

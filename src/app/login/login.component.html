@@ -1,15 +1,21 @@
 <div *ngIf="!data.accountCreation">
   <h1 mat-dialog-title>Se connecter</h1>
   <mat-dialog-content>
+    <span *ngIf="data.error" style="color: red">Le nom d'utilisateur ou le mot de passe est incorrect.</span>
     <form class="example-form">
 
       <mat-form-field>
-        <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" required>
+        <input matInput placeholder="Username"
+               name="username"
+               [(ngModel)]="data.username"
+               (keyup.enter)="dialogRef.close(data)"
+               required>
       </mat-form-field>
 
       <mat-form-field>
         <input matInput placeholder="Password" [(ngModel)]="data.password" type="password" name="password"
-               required>
+               required
+               (keyup.enter)="dialogRef.close(data)">
       </mat-form-field>
 
     </form>

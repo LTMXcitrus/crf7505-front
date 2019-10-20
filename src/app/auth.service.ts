@@ -101,11 +101,12 @@ export class AuthService {
     this.loggedIn = state;
   }
 
-  openLoginDialog() {
+  openLoginDialog(error?: string) {
     const dialogRef = this.dialog.open(LoginComponent, {
       data: {
         username: '',
-        password: ''
+        password: '',
+        error: error
       }
     });
 
@@ -121,10 +122,15 @@ export class AuthService {
   }
 
   private log_in(loginData: any) {
-    this.login(loginData.username, loginData.password).subscribe(result => console.log(result));
-    this.snackBar.open('Hello ' + loginData.username, null, {
-      duration: 2000,
-    });
+    this.login(loginData.username, loginData.password).subscribe(
+      () => {
+        this.snackBar.open('Hello ' + loginData.username, null, {
+          duration: 2000,
+        });
+      },
+      () => {
+          this.openLoginDialog("erreur")
+      });
   }
 
   private createAccount(accountCreationData: any) {

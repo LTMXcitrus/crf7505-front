@@ -33,6 +33,7 @@ import {EditVolunteerComponent} from './mission/edit-volunteer/edit-volunteer.co
 import {RecapMailsComponent} from './mission/recap-mails/recap-mails.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { DialogMailEditorComponent } from './mission/dialog-mail-editor/dialog-mail-editor.component';
+import { MissingSummaryComponent } from './mission/missing-summary/missing-summary.component';
 
 
 export const DATE_FORMAT = {
@@ -70,7 +71,8 @@ export const DATE_FORMAT = {
     DeleteConfirmationComponent,
     EditVolunteerComponent,
     RecapMailsComponent,
-    DialogMailEditorComponent
+    DialogMailEditorComponent,
+    MissingSummaryComponent
   ],
   imports: [
     BrowserModule,
