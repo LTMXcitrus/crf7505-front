@@ -10,7 +10,7 @@ import {Mission} from '../../model/Mission';
 import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.component';
 import {CrfMail} from '../../model/CrfMail';
 import {groupBy} from '../../utils';
-import {DialogMailEditorComponent} from '../dialog-mail-editor/dialog-mail-editor.component';
+import {DialogMailEditorComponent} from '../mails/dialog-mail-editor/dialog-mail-editor.component';
 import {TranslateRolePipe} from "../../translate-role.pipe";
 
 @Component({

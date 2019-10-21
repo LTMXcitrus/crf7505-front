@@ -24,16 +24,17 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {MissionHoursPipe} from './mission-hours.pipe';
 import {DayPipe} from './day.pipe';
 import {MissionDetailsComponent} from './mission/recap/mission-details/mission-details.component';
-import {VolunteerComponent} from './mission/volunteer/volunteer.component';
-import {AddVolunteerComponent} from './mission/add-volunteer/add-volunteer.component';
-import {VolunteerFormComponent} from './mission/volunteer-form/volunteer-form.component';
+import {VolunteerComponent} from './mission/volunteer/volunteer/volunteer.component';
+import {AddVolunteerComponent} from './mission/volunteer/add-volunteer/add-volunteer.component';
+import {VolunteerFormComponent} from './mission/volunteer/volunteer-form/volunteer-form.component';
 import {TranslateRolePipe} from './translate-role.pipe';
-import {DeleteConfirmationComponent} from './mission/delete-confirmation/delete-confirmation.component';
-import {EditVolunteerComponent} from './mission/edit-volunteer/edit-volunteer.component';
-import {RecapMailsComponent} from './mission/recap-mails/recap-mails.component';
+import {DeleteConfirmationComponent} from './mission/volunteer/delete-confirmation/delete-confirmation.component';
+import {EditVolunteerComponent} from './mission/volunteer/edit-volunteer/edit-volunteer.component';
+import {RecapMailsComponent} from './mission/mails/recap-mails/recap-mails.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import { DialogMailEditorComponent } from './mission/dialog-mail-editor/dialog-mail-editor.component';
-import { MissingSummaryComponent } from './mission/missing-summary/missing-summary.component';
+import { DialogMailEditorComponent } from './mission/mails/dialog-mail-editor/dialog-mail-editor.component';
+import { MissingSummaryComponent } from './mission/recap/missing-summary/missing-summary.component';
+import { EditMissingRolesDialogComponent } from './mission/recap/edit-missing-roles-dialog/edit-missing-roles-dialog.component';
 
 
 export const DATE_FORMAT = {
@@ -72,7 +73,8 @@ export const DATE_FORMAT = {
     EditVolunteerComponent,
     RecapMailsComponent,
     DialogMailEditorComponent,
-    MissingSummaryComponent
+    MissingSummaryComponent,
+    EditMissingRolesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ export const DATE_FORMAT = {
     AddVolunteerComponent,
     EditVolunteerComponent,
     DeleteConfirmationComponent,
-    DialogMailEditorComponent
+    DialogMailEditorComponent,
+    EditMissingRolesDialogComponent
   ]
 })
 export class AppModule {

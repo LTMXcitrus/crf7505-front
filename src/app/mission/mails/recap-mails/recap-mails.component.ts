@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CrfMail} from "../../model/CrfMail";
-import {CrfService} from "../../api/crf.service";
+import {CrfMail} from "../../../model/CrfMail";
+import {CrfService} from "../../../api/crf.service";
 import {MatSnackBar} from "@angular/material";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
