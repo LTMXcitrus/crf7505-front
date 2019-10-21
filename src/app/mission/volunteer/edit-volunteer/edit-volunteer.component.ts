@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Volunteer} from "../../model/Volunteer";
+import {Volunteer} from "../../../model/Volunteer";
 
 @Component({
   selector: 'app-update-volunteer',

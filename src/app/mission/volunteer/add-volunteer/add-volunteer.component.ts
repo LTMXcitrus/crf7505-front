@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Volunteer} from "../../model/Volunteer";
-import {RoleType} from "../../model/RoleType";
+import {Volunteer} from "../../../model/Volunteer";
+import {RoleType} from "../../../model/RoleType";
 
 @Component({
   selector: 'app-add-volunteer',

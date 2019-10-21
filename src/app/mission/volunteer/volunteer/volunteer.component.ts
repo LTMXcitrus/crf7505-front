@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {CrfService} from '../../api/crf.service';
-import {Volunteer} from '../../model/Volunteer';
+import {CrfService} from '../../../api/crf.service';
+import {Volunteer} from '../../../model/Volunteer';
 import {MatDialog} from '@angular/material';
 import {AddVolunteerComponent} from '../add-volunteer/add-volunteer.component';
 import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirmation.component';
 import {EditVolunteerComponent} from '../edit-volunteer/edit-volunteer.component';
-import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.component';
+import {DialogSpinnerComponent} from '../../../dialog-spinner/dialog-spinner.component';
 
 @Component({
   selector: 'app-volunteer',

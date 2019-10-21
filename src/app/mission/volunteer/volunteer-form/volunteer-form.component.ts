@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Volunteer} from "../../model/Volunteer";
-import {RoleType} from "../../model/RoleType";
+import {Volunteer} from "../../../model/Volunteer";
+import {RoleType} from "../../../model/RoleType";
 
 @Component({
   selector: 'app-volunteer-form',
