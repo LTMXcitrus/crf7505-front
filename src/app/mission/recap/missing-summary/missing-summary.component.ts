@@ -35,8 +35,10 @@ export class MissingSummaryComponent implements OnInit {
 
   editMissingRoles() {
     const dialogRef = this.dialog.open(EditMissingRolesDialogComponent, {data: {missingRoles: this.mission.missingRoles}});
-    dialogRef.afterClosed().subscribe((data) => {
-      this.mission.missingRoles = data.missingRoles;
+    dialogRef.afterClosed().subscribe((missingRoles) => {
+      if(missingRoles) {
+        this.mission.missingRoles = missingRoles;
+      }
     })
   }
 }

@@ -13,11 +13,14 @@ export class EditMissingRolesDialogComponent implements OnInit {
   possibleRoles = Object.keys(RoleType);
   roleToAdd: Role = new Role(RoleType.PARTICIPANT, 1);
 
+  missingRoles: Role[];
+
   constructor(public dialogRef: MatDialogRef<EditMissingRolesDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { missingRoles: Role[] }) {
   }
 
   ngOnInit() {
+    this.missingRoles = this.data.missingRoles.map(role => Object.assign({}, role));
   }
 
   onCancelClick(): void {
@@ -25,16 +28,20 @@ export class EditMissingRolesDialogComponent implements OnInit {
   }
 
   remove(roleToRemove: Role) {
-    this.data.missingRoles = this.data.missingRoles.filter(role => role !== roleToRemove)
+    this.missingRoles = this.missingRoles.filter(role => role !== roleToRemove);
   }
 
   addRole() {
-    const existingRole = this.data.missingRoles.find(role => role.type === this.roleToAdd.type);
+    const existingRole = this.missingRoles.find(role => role.type === this.roleToAdd.type);
     if(existingRole) {
       existingRole.quantity = existingRole.quantity + this.roleToAdd.quantity;
     } else {
-      this.data.missingRoles.push(this.roleToAdd)
+      this.missingRoles.push(this.roleToAdd)
     }
     this.roleToAdd = new Role(RoleType.PARTICIPANT, 1);
+  }
+
+  roleAlreadyPresent(role: string): boolean {
+    return this.missingRoles.filter(r => r.type.toString() === role).length !== 0;
   }
 }
