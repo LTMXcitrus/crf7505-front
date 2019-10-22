@@ -26,7 +26,7 @@
         </button>
         <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
         <p mat-line> {{mission | missionHours}} </p>
-        <p class="missing-summary">{{missingSummary(mission)}}</p>
+        <app-missing-summary [mission]="mission"></app-missing-summary>
         <span class="fill-remaining-space"></span>
         <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
            target="_blank">Pegass</a>

@@ -8,10 +8,10 @@ import {Observable, of, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class PegassLoginService {
+  private loginKey = "pegass-login";
+  private passwordKey = "pegass-password";
 
   private logger = new Subject<PegassLogin>();
-
-  private pegassLogin: PegassLogin;
 
   constructor(private dialog: MatDialog) {
   }
@@ -22,8 +22,9 @@ export class PegassLoginService {
 
   login(): Promise<PegassLogin> {
     return new Promise(resolve => {
-      if (this.pegassLogin) {
-        resolve(this.pegassLogin);
+      const pegassLogin = this.retrievePegassLogin()
+      if (pegassLogin) {
+        resolve(pegassLogin);
       } else {
         const dialogRef = this.dialog.open(PegassLoginDialogComponent, {
           data: {
@@ -33,11 +34,34 @@ export class PegassLoginService {
         });
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
-            this.pegassLogin = result;
-            resolve(this.pegassLogin);
+            this.storePegassLogin(result)
+            resolve(result);
           }
         });
       }
     });
+  }
+
+  wrongLogin() {
+    this.removePegassLogin();
+  }
+
+  retrievePegassLogin(): PegassLogin {
+    const login = localStorage.getItem(this.loginKey)
+    const pwd = localStorage.getItem(this.passwordKey)
+    if(login && pwd) {
+      return new PegassLogin(login, pwd);
+    }
+    return undefined;
+  }
+
+  storePegassLogin(pegassLogin: PegassLogin) {
+    localStorage.setItem(this.loginKey, pegassLogin.username);
+    localStorage.setItem(this.passwordKey, pegassLogin.password);
+  }
+
+  removePegassLogin() {
+    localStorage.removeItem(this.loginKey);
+    localStorage.removeItem(this.passwordKey);
   }
 }

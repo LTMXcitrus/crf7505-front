@@ -5,7 +5,7 @@ import {
   MatCardModule, MatDatepickerModule, MatDialogModule, MatExpansionModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule,
+  MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatRippleModule, MatSelectModule,
   MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
@@ -32,6 +32,7 @@ import {
     MatNativeDateModule,
     MatExpansionModule,
     MatSelectModule,
+    MatRippleModule
   ],
   exports: [
     MatToolbarModule,
@@ -51,7 +52,8 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRippleModule
   ]
 })
 export class AppMaterialModule {

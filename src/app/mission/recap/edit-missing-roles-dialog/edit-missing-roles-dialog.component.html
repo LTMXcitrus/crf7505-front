@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Modifier les rôles manquants</h1>
+<div mat-dialog-content>
+  <mat-list role="list">
+    <mat-list-item *ngFor="let missingRole of missingRoles"
+                   role="listitem">
+      <div class="role-list">
+        <div style="align-self: center">
+          <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn"
+                  (click)="remove(missingRole)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div style="align-self: center">
+          <mat-form-field>
+            <input matInput placeholder="Quantité" name="quantity" type="number" [(ngModel)]="missingRole.quantity"
+                   required
+                   min="1">
+          </mat-form-field>
+        </div>
+        <div style="align-self: center"><span> {{missingRole.type | translateRole}}</span></div>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <div class="missing-roles-form">
+    <mat-form-field style="flex: 4 1 1px; width: 3vw;">
+      <mat-select [(value)]="roleToAdd.type">
+        <mat-option *ngFor="let role of possibleRoles" [value]="roleTypeEnum[role]" [disabled]="roleAlreadyPresent(role)">
+          {{roleTypeEnum[role] | translateRole}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div style="flex: 1 1 1px;width: 1vw; align-self: center">
+      <button mat-raised-button (click)="addRole()" color="primary" [disabled]="roleAlreadyPresent(roleToAdd.type)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Annuler</button>
+  <button mat-raised-button [mat-dialog-close]="missingRoles" color="primary" cdkFocusInitial>Ok</button>
+</div>

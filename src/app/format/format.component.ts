@@ -34,7 +34,10 @@ export class FormatComponent implements OnInit {
         this.volunteers.next(successResponse);
           dialogRef.close();
         },
-        () => dialogRef.close());
+        () => {
+          this.pegassLoginService.wrongLogin();
+          dialogRef.close()
+        });
   }
 
 }

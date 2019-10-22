@@ -24,4 +24,12 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = result;
     });
   }
+
+  openLoginDialog() {
+    this.authService.openLoginDialog();
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

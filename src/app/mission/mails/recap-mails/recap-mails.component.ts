@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CrfMail} from "../../model/CrfMail";
-import {CrfService} from "../../api/crf.service";
+import {CrfMail} from "../../../model/CrfMail";
+import {CrfService} from "../../../api/crf.service";
 import {MatSnackBar} from "@angular/material";
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-recap-mails',
@@ -12,7 +11,6 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class RecapMailsComponent implements OnInit {
 
   @Input() crfMails: CrfMail[];
-  public editor = ClassicEditor;
 
   constructor(private crfService: CrfService,
               private snackBar: MatSnackBar) {
