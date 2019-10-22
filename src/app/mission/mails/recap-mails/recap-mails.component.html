@@ -4,9 +4,9 @@
       <button mat-raised-button (click)="sendRecap()">Envoyer le récap</button>
       <span>[{{mail.subject}}]</span>
       <br/>
-      <p-editor [(ngModel)]="mail.text"></p-editor>
+<!--      <p-editor [(ngModel)]="mail.text"></p-editor>-->
 <!--      <p-editor [(ngModel)]="mail.text" [style]="{'height':'320px'}"></p-editor>-->
-<!--      <div [innerHTML]="mail.text"></div>-->
+      <div [innerHTML]="mail.text"></div>
     </div>
   </mat-tab>
 </mat-tab-group>
