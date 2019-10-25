@@ -28,13 +28,12 @@ import {VolunteerComponent} from './mission/volunteer/volunteer/volunteer.compon
 import {AddVolunteerComponent} from './mission/volunteer/add-volunteer/add-volunteer.component';
 import {VolunteerFormComponent} from './mission/volunteer/volunteer-form/volunteer-form.component';
 import {TranslateRolePipe} from './translate-role.pipe';
-import {EditorModule} from 'primeng/editor';
 import {DeleteConfirmationComponent} from './mission/volunteer/delete-confirmation/delete-confirmation.component';
 import {EditVolunteerComponent} from './mission/volunteer/edit-volunteer/edit-volunteer.component';
 import {RecapMailsComponent} from './mission/mails/recap-mails/recap-mails.component';
-import { DialogMailEditorComponent } from './mission/mails/dialog-mail-editor/dialog-mail-editor.component';
-import { MissingSummaryComponent } from './mission/recap/missing-summary/missing-summary.component';
-import { EditMissingRolesDialogComponent } from './mission/recap/edit-missing-roles-dialog/edit-missing-roles-dialog.component';
+import {DialogMailEditorComponent} from './mission/mails/dialog-mail-editor/dialog-mail-editor.component';
+import {MissingSummaryComponent} from './mission/recap/missing-summary/missing-summary.component';
+import {EditMissingRolesDialogComponent} from './mission/recap/edit-missing-roles-dialog/edit-missing-roles-dialog.component';
 
 
 export const DATE_FORMAT = {
@@ -85,7 +84,6 @@ export const DATE_FORMAT = {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EditorModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

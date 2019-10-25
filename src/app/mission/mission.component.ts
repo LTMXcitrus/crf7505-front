@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {CrfMail} from '../model/CrfMail';
 import {Mission} from '../model/Mission';
+import {Activities} from "../model/Activities";
 
 @Component({
   selector: 'app-mission',
@@ -10,14 +11,10 @@ import {Mission} from '../model/Mission';
 export class MissionComponent implements OnInit {
 
   crfMails: CrfMail[];
-  missions: Mission[];
+  activities: Activities;
   selectedTab = 0;
 
   constructor(private ref: ChangeDetectorRef) {
-  }
-
-  click() {
-    console.log(this.missions);
   }
 
   ngOnInit() {
@@ -30,7 +27,12 @@ export class MissionComponent implements OnInit {
   }
 
   removeMission(mission: Mission) {
-    this.missions = this.missions.filter(ms => ms !== mission);
+    this.activities.externalActivities = this.activities.externalActivities.filter(ms => ms !== mission);
+    this.ref.detectChanges();
+  }
+
+  removeLocalMission(mission: Mission) {
+    this.activities.localActivities = this.activities.localActivities.filter(ms => ms !== mission);
     this.ref.detectChanges();
   }
 }
