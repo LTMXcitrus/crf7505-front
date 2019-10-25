@@ -30,3 +30,7 @@ a, button {
 app-missing-summary {
   width: 100%;
 }
+
+.mission-card {
+  margin: 5px;
+}
