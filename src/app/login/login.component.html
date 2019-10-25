@@ -50,6 +50,13 @@
           être identiques
         </mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <mat-select [(value)]="data.userStructure">
+          <mat-option *ngFor="let ul of uls" [value]="ul">
+            Unité locale de Paris {{ul}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

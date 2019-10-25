@@ -9,6 +9,7 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 import * as moment from 'moment';
 
 export const JWT_TOKEN_NAME = 'currentUser';
+type User = { sub: string, userStructure: string };
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,15 @@ export class AuthService {
     return this.loggedIn;
   }
 
+  getConnectedUser(): User {
+    const token = this.getToken();
+    if (token) {
+      return jwt_decode<User>(this.getToken());
+    }
+  }
+
   login(username: string, password: string): Observable<string> {
-    localStorage.removeItem('currentUser');
+    this.removeToken();
     return this.http.post<any>(environment.baseUrl + '/login', {username, password}, {observe: 'response'})
       .pipe(map(response => {
         const token = response.headers.get('Authorization');
@@ -49,6 +57,10 @@ export class AuthService {
         this.setLoginState(true);
         return token;
       }));
+  }
+
+  private removeToken() {
+    localStorage.removeItem(JWT_TOKEN_NAME);
   }
 
   private getToken(): string {
@@ -92,8 +104,8 @@ export class AuthService {
     this.setLoginState(false);
   }
 
-  signUp(username: string, password: string) {
-    return this.http.post<any>(environment.baseUrl + '/users/sign-up', {username, password});
+  signUp(username: string, password: string, userStructure: string) {
+    return this.http.post<any>(environment.baseUrl + '/users/sign-up', {username, password, userStructure});
   }
 
   private setLoginState(state: boolean) {
@@ -106,6 +118,7 @@ export class AuthService {
       data: {
         username: '',
         password: '',
+        userStructure: '',
         error: error
       }
     });
@@ -129,12 +142,12 @@ export class AuthService {
         });
       },
       () => {
-          this.openLoginDialog("erreur")
+        this.openLoginDialog('erreur');
       });
   }
 
   private createAccount(accountCreationData: any) {
-    this.signUp(accountCreationData.username, accountCreationData.password).subscribe(result => console.log(result));
+    this.signUp(accountCreationData.username, accountCreationData.password, accountCreationData.userStructure).subscribe(result => console.log(result));
   }
 
 }

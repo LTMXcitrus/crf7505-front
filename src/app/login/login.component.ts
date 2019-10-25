@@ -9,7 +9,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 export class LoginComponent implements OnInit {
   uls = ['V'];
 
-
   constructor(public dialogRef: MatDialogRef<LoginComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -18,6 +17,7 @@ export class LoginComponent implements OnInit {
     this.data.username = '';
     this.data.password = '';
     this.data.accountCreation = false;
+    this.data.userStructure = this.uls[0];
   }
 
   onCancelClick(): void {
