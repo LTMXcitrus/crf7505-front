@@ -11,14 +11,16 @@ export class DialogMailEditorComponent implements OnInit {
   header: string;
   footer: string;
   subject: string;
+  respMission: string;
 
   constructor(public dialogRef: MatDialogRef<DialogMailEditorComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: {header: string, footer: string, subject: string}) { }
+              @Inject(MAT_DIALOG_DATA) public data: {header: string, footer: string, subject: string, respMission: string}) { }
 
   ngOnInit() {
     this.header = this.data.header;
     this.footer = this.data.footer;
     this.subject = this.data.subject;
+    this.respMission = this.data.respMission;
   }
 
   onCancelClick(): void {

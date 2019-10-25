@@ -7,6 +7,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  uls = ['V'];
 
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>,

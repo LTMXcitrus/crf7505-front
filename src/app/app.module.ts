@@ -34,6 +34,7 @@ import {RecapMailsComponent} from './mission/mails/recap-mails/recap-mails.compo
 import {DialogMailEditorComponent} from './mission/mails/dialog-mail-editor/dialog-mail-editor.component';
 import {MissingSummaryComponent} from './mission/recap/missing-summary/missing-summary.component';
 import {EditMissingRolesDialogComponent} from './mission/recap/edit-missing-roles-dialog/edit-missing-roles-dialog.component';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 
 export const DATE_FORMAT = {
@@ -73,7 +74,8 @@ export const DATE_FORMAT = {
     RecapMailsComponent,
     DialogMailEditorComponent,
     MissingSummaryComponent,
-    EditMissingRolesDialogComponent
+    EditMissingRolesDialogComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

@@ -17,13 +17,15 @@
   <button mat-raised-button color="primary" *ngIf="activities" (click)="sendRecap()">Envoyer le recap</button>
 
 
-  <mat-accordion *ngIf="activities">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Missions locales
-        </mat-panel-title>
-      </mat-expansion-panel-header>
+  <mat-card *ngIf="activities" class="mission-card">
+    <mat-card-header>
+      <mat-card-title>Les missions locales</mat-card-title>
+      <mat-card-subtitle>DPS, réseaux et autres réunions de l'UL</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="localMissions.size === 0">
+        <span><i>Pas d'activités pertinentes sur la période sélectionnée</i></span>
+      </div>
       <div *ngFor="let day of localMissions | keyvalue">
         <h2>{{day.key | day}}</h2>
         <mat-list dense>
@@ -42,14 +44,15 @@
           </mat-list-item>
         </mat-list>
       </div>
-    </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Missions des autres ULs
-        </mat-panel-title>
-      </mat-expansion-panel-header>
+  <mat-card *ngIf="activities" class="mission-card">
+    <mat-card-header>
+      <mat-card-title>Les missions extérieures</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
       <div *ngFor="let day of missionsByDay | keyvalue">
         <h2>{{day.key | day}}</h2>
         <mat-list dense>
@@ -68,6 +71,7 @@
           </mat-list-item>
         </mat-list>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-card-content>
+  </mat-card>
+
 </div>

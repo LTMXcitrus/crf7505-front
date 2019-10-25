@@ -5,3 +5,17 @@ mat-dialog-content {
 .text-area {
   width: 100%;
 }
+
+.read-only {
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+.mail-content {
+  border-color: gray;
+  border-radius: 5px;
+  border-width: thick;
+  border-style: solid;
+  padding: 1em;
+}
