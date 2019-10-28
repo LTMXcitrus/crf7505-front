@@ -3,27 +3,43 @@
   <form class="example-form">
 
     <mat-form-field class="text-area">
+      <input matInput placeholder="Responsable mission de la semaine" [(ngModel)]="respMission"
+             [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+
+    <mat-form-field class="text-area">
       <input matInput placeholder="Sujet du mail" [(ngModel)]="subject" [ngModelOptions]="{standalone: true}"/>
     </mat-form-field>
 
-    <p>Bonjour <i>prénom</i>,</p>
+    <div class="mail-content">
 
-    <mat-form-field class="text-area">
-      <textarea matInput placeholder="En-tête" [(ngModel)]="header" [ngModelOptions]="{standalone: true}"></textarea>
-    </mat-form-field>
+      <div class="read-only">
+        <p>Bonjour <i>prénom</i>,</p>
+      </div>
 
-    <p>Voici les missions de la semaine:</p>
-    <p>...</p>
+      <mat-form-field class="text-area">
+        <textarea matInput placeholder="En-tête" [(ngModel)]="header" [ngModelOptions]="{standalone: true}"></textarea>
+      </mat-form-field>
 
-    <mat-form-field class="text-area">
-      <textarea matInput placeholder="Signature" [(ngModel)]="footer" [ngModelOptions]="{standalone: true}"></textarea>
-    </mat-form-field>
+      <div class="read-only">
+        <p>...</p>
+        <p><i>Listes des missions adaptées au bénévole</i></p>
+        <p>...</p>
+      </div>
+
+      <mat-form-field class="text-area">
+        <textarea matInput placeholder="Signature" [(ngModel)]="footer"
+                  [ngModelOptions]="{standalone: true}"></textarea>
+      </mat-form-field>
+    </div>
 
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button mat-button (click)="onCancelClick()">Annuler</button>
-  <button mat-raised-button [mat-dialog-close]="{header: header, footer: footer, subject: subject}" color="primary" cdkFocusInitial style="display:block;">
+  <button mat-raised-button
+          [mat-dialog-close]="{header: header, footer: footer, subject: subject, respMission: respMission}"
+          color="primary" cdkFocusInitial style="display:block;">
     Générer les mails
   </button>
 </mat-dialog-actions>

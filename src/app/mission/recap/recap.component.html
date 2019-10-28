@@ -14,24 +14,64 @@
     <mat-error *ngIf="timeSlotForm.invalid">La date de fin doit être après la date de début.</mat-error>
   </form>
   <button mat-raised-button (click)="getMissions()">Charger les missions</button>
-  <button mat-raised-button color="primary" *ngIf="missions" (click)="sendRecap()">Envoyer le recap</button>
+  <button mat-raised-button color="primary" *ngIf="activities" (click)="sendRecap()">Envoyer le recap</button>
 
-  <div *ngFor="let day of missionsByDay | keyvalue">
-    <h2>{{day.key | day}}</h2>
-    <mat-list dense>
-      <mat-list-item *ngFor="let mission of day.value">
-        <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn"
-                (click)="remove(day.key, mission)">
-          <mat-icon>close</mat-icon>
-        </button>
-        <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
-        <p mat-line> {{mission | missionHours}} </p>
-        <app-missing-summary [mission]="mission"></app-missing-summary>
-        <span class="fill-remaining-space"></span>
-        <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
-           target="_blank">Pegass</a>
-        <button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>
-      </mat-list-item>
-    </mat-list>
-  </div>
+
+  <mat-card *ngIf="activities" class="mission-card">
+    <mat-card-header>
+      <mat-card-title>Les missions locales</mat-card-title>
+      <mat-card-subtitle>DPS, réseaux et autres réunions de l'UL</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="localMissions.size === 0">
+        <span><i>Pas d'activités pertinentes sur la période sélectionnée</i></span>
+      </div>
+      <div *ngFor="let day of localMissions | keyvalue">
+        <h2>{{day.key | day}}</h2>
+        <mat-list dense>
+          <mat-list-item *ngFor="let mission of day.value">
+            <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn"
+                    (click)="removeLocal(day.key, mission)">
+              <mat-icon>close</mat-icon>
+            </button>
+            <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
+            <p mat-line> {{mission | missionHours}} </p>
+            <app-missing-summary [mission]="mission"></app-missing-summary>
+            <span class="fill-remaining-space"></span>
+            <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
+               target="_blank">Pegass</a>
+            <button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="activities" class="mission-card">
+    <mat-card-header>
+      <mat-card-title>Les missions extérieures</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let day of missionsByDay | keyvalue">
+        <h2>{{day.key | day}}</h2>
+        <mat-list dense>
+          <mat-list-item *ngFor="let mission of day.value">
+            <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn"
+                    (click)="remove(day.key, mission)">
+              <mat-icon>close</mat-icon>
+            </button>
+            <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
+            <p mat-line> {{mission | missionHours}} </p>
+            <app-missing-summary [mission]="mission"></app-missing-summary>
+            <span class="fill-remaining-space"></span>
+            <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
+               target="_blank">Pegass</a>
+            <button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
 </div>

@@ -12,6 +12,7 @@ import {CrfMail} from '../../model/CrfMail';
 import {groupBy} from '../../utils';
 import {DialogMailEditorComponent} from '../mails/dialog-mail-editor/dialog-mail-editor.component';
 import {TranslateRolePipe} from "../../translate-role.pipe";
+import {Activities} from "../../model/Activities";
 
 @Component({
   selector: 'app-recap',
@@ -20,12 +21,14 @@ import {TranslateRolePipe} from "../../translate-role.pipe";
 })
 export class RecapComponent implements OnInit {
 
-  @Output() missionsLoaded = new EventEmitter<Mission[]>();
+  @Output() activitiesLoaded = new EventEmitter<Activities>();
   @Output() mailsCreated = new EventEmitter<CrfMail[]>();
   @Output() removeMission = new EventEmitter<Mission>();
-  @Input() missions: Mission[];
+  @Output() removeLocalMission = new EventEmitter<Mission>();
+  @Input() activities: Activities;
 
   missionsByDay: Map<string, Mission[]> = new Map();
+  localMissions: Map<string, Mission[]> = new Map();
 
   timeSlotForm = new FormGroup({
     'startDate': new FormControl(new Date()),
@@ -39,17 +42,16 @@ export class RecapComponent implements OnInit {
 
   ngOnInit() {
     moment.locale('fr');
-    this.groupByDay(this.missions);
   }
 
-  private groupByDay(missions: Mission[]) {
+  private groupByDay(missions: Mission[]): Map<string, Mission[]> {
     if (missions) {
       const missionsByDay = groupBy('date')(missions);
       const map = new Map();
       Object.keys(missionsByDay).forEach(key => {
         map.set(key, missionsByDay[key]);
       });
-      this.missionsByDay = map;
+      return map
     }
   }
 
@@ -77,8 +79,12 @@ export class RecapComponent implements OnInit {
 
   remove(day: string, mission: Mission) {
     this.removeMission.emit(mission);
-    this.groupByDay(this.missions);
+    this.missionsByDay = this.groupByDay(this.activities.externalActivities);
+  }
 
+  removeLocal(day: string, mission: Mission) {
+    this.removeLocalMission.emit(mission);
+    this.localMissions = this.groupByDay(this.activities.localActivities);
   }
 
   private loadMissions(login: PegassLogin) {
@@ -89,11 +95,12 @@ export class RecapComponent implements OnInit {
       encodeURIComponent(moment(this.endDate.value).endOf('day').format())
     )
       .subscribe(
-        missions => {
-        this.missionsLoaded.emit(missions);
-        this.groupByDay(missions);
-        spinner.close();
-      },
+        activities => {
+          this.activitiesLoaded.emit(activities);
+          this.missionsByDay = this.groupByDay(activities.externalActivities);
+          this.localMissions = this.groupByDay(activities.localActivities);
+          spinner.close();
+        },
         () => {
           this.pegassLoginService.wrongLogin();
           spinner.close();
@@ -102,12 +109,11 @@ export class RecapComponent implements OnInit {
 
 
   sendRecap() {
-    const mailEditorRef = this.dialog.open(DialogMailEditorComponent, {data: {header: '', footer: '', subject: ''}});
+    const mailEditorRef = this.dialog.open(DialogMailEditorComponent, {data: {header: '', footer: '', subject: 'Les missions de la semaine', respMission: ''}});
     mailEditorRef.afterClosed().subscribe(data => {
       if (data) {
-        console.log(data)
         const ref = this.dialog.open(DialogSpinnerComponent, {data: 'Génération des mails...'});
-        this.crfService.generateMails(this.missions, data.subject, data.header, data.footer).subscribe(crfMails => {
+        this.crfService.generateMails(this.activities, data.subject, data.header, data.footer, data.respMission).subscribe(crfMails => {
           this.mailsCreated.emit(crfMails);
           ref.close();
         });

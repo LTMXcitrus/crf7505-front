@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
 
   isLoggedIn = false;
 
+  connectedUser: {sub: string, userStructure};
+
   constructor(private authService: AuthService,
               private dialog: MatDialog,
               private snackBar: MatSnackBar) {
@@ -22,7 +24,9 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.authService.isLoggedInAsObservable().subscribe(result => {
       this.isLoggedIn = result;
+      this.connectedUser = this.authService.getConnectedUser();
     });
+    this.connectedUser = this.authService.getConnectedUser();
   }
 
   openLoginDialog() {

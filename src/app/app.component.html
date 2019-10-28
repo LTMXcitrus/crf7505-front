@@ -3,8 +3,14 @@
     <mat-icon>menu</mat-icon>
   </button>
   {{title}}
-  <a mat-button routerLink="/"><mat-icon>home</mat-icon></a>
-  <span class="fill-remaining-space"></span>
+  <a mat-button routerLink="/">
+    <mat-icon>home</mat-icon>
+  </a>
+  <div class="fill-remaining-space">
+    <div style="width: fit-content">
+      <span *ngIf="connectedUser">Unité Locale de Paris {{connectedUser.userStructure}}</span>
+    </div>
+  </div>
   <button *ngIf="!isLoggedIn" (click)="openLoginDialog()" mat-button>Se connecter</button>
   <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Se déconnecter</button>
 </mat-toolbar>
