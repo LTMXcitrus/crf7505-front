@@ -23,5 +23,14 @@ mat-form-field {
 }
 
 .mat-dialog-content {
-  width: 25vw !important;
+  width: 50vw !important;
+}
+
+.mat-tab-content {
+  padding:0.5em;
+}
+.edit-role-list {
+  margin-top:0.5em;
+  height: 300px;
+  overflow-y: scroll;
 }

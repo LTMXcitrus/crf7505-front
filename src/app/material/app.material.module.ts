@@ -2,13 +2,25 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   MatButtonModule,
-  MatCardModule, MatDatepickerModule, MatDialogModule, MatExpansionModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatNativeDateModule, MatProgressSpinnerModule, MatRippleModule, MatSelectModule,
-  MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule,
+  MatListModule,
+  MatNativeDateModule,
+  MatProgressSpinnerModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
+import {MaterialTimePickerModule} from "@candidosales/material-time-picker";
 
 @NgModule({
   declarations: [],
