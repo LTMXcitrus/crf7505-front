@@ -12,6 +12,12 @@
       <mat-datepicker #toPicker></mat-datepicker>
     </mat-form-field>
     <mat-error *ngIf="timeSlotForm.invalid">La date de fin doit être après la date de début.</mat-error>
+    Charger les missions locales sur
+    <mat-form-field style="width: 2em;">
+      <input matInput [min]="0" placeholder="jours" type="number"
+             formControlName="addedDaysForLocalMissions">
+    </mat-form-field>
+    supplémentaires.
   </form>
   <button mat-raised-button (click)="getMissions()">Charger les missions</button>
   <button mat-raised-button color="primary" *ngIf="activities" (click)="sendRecap()">Envoyer le recap</button>
@@ -34,13 +40,13 @@
                     (click)="removeLocal(day.key, mission)">
               <mat-icon>close</mat-icon>
             </button>
-            <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
+            <h3 mat-line style="font-size: 18px;"><b>{{mission.name}} ({{mission.ul}})</b></h3>
             <p mat-line> {{mission | missionHours}} </p>
             <app-missing-summary [mission]="mission"></app-missing-summary>
             <span class="fill-remaining-space"></span>
             <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
-               target="_blank">Pegass</a>
-            <button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>
+               target="_blank">Voir sur Pegass</a>
+            <!--<button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>-->
           </mat-list-item>
         </mat-list>
       </div>
@@ -61,13 +67,13 @@
                     (click)="remove(day.key, mission)">
               <mat-icon>close</mat-icon>
             </button>
-            <h3 mat-line>{{mission.name}} ({{mission.ul}})</h3>
+            <h3 mat-line style="font-size:18px;"><b>{{mission.name}} ({{mission.ul}})</b></h3>
             <p mat-line> {{mission | missionHours}} </p>
             <app-missing-summary [mission]="mission"></app-missing-summary>
             <span class="fill-remaining-space"></span>
             <a mat-stroked-button href="https://pegass.croix-rouge.fr/planning-des-activites/activite/{{mission.id}}/"
-               target="_blank">Pegass</a>
-            <button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>
+               target="_blank">Voir sur Pegass</a>
+            <!--<button mat-raised-button color="primary" (click)="openDetails(mission)">Voir les détails</button>-->
           </mat-list-item>
         </mat-list>
       </div>

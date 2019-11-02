@@ -8,7 +8,7 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatMenuModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
   MatRippleModule,
@@ -44,7 +44,8 @@ import {MaterialTimePickerModule} from "@candidosales/material-time-picker";
     MatNativeDateModule,
     MatExpansionModule,
     MatSelectModule,
-    MatRippleModule
+    MatRippleModule,
+    MatMenuModule
   ],
   exports: [
     MatToolbarModule,
@@ -65,7 +66,8 @@ import {MaterialTimePickerModule} from "@candidosales/material-time-picker";
     MatNativeDateModule,
     MatExpansionModule,
     MatSelectModule,
-    MatRippleModule
+    MatRippleModule,
+    MatMenuModule
   ]
 })
 export class AppMaterialModule {

@@ -25,6 +25,7 @@ export class PegassLoginService {
       const pegassLogin = this.retrievePegassLogin()
       if (pegassLogin) {
         resolve(pegassLogin);
+        this.logger.next(pegassLogin);
       } else {
         const dialogRef = this.dialog.open(PegassLoginDialogComponent, {
           data: {
@@ -36,10 +37,16 @@ export class PegassLoginService {
           if (result) {
             this.storePegassLogin(result)
             resolve(result);
+            this.logger.next(result)
           }
         });
       }
     });
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.retrievePegassLogin();
+
   }
 
   wrongLogin() {
@@ -63,5 +70,6 @@ export class PegassLoginService {
   removePegassLogin() {
     localStorage.removeItem(this.loginKey);
     localStorage.removeItem(this.passwordKey);
+    this.logger.next(undefined)
   }
 }
