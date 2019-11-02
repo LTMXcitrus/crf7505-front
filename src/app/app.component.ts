@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatSidenav, MatSnackBar} from '@angular/material';
 import {AuthService} from './auth.service';
+import {PegassLoginService} from "./pegass-login.service";
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,12 @@ export class AppComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   isLoggedIn = false;
+  isPegassLoggedIn = false;
 
-  connectedUser: {sub: string, userStructure};
+  connectedUser: { sub: string, userStructure };
 
   constructor(private authService: AuthService,
+              private pegassLoginService: PegassLoginService,
               private dialog: MatDialog,
               private snackBar: MatSnackBar) {
   }
@@ -27,6 +30,11 @@ export class AppComponent implements OnInit {
       this.connectedUser = this.authService.getConnectedUser();
     });
     this.connectedUser = this.authService.getConnectedUser();
+
+    this.isPegassLoggedIn = this.pegassLoginService.isLoggedIn();
+    this.pegassLoginService.onPegassLogin().subscribe(login => {
+      this.isPegassLoggedIn = !!login
+    })
   }
 
   openLoginDialog() {
@@ -35,5 +43,13 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  pegassLogin() {
+    this.pegassLoginService.login()
+  }
+
+  pegassLogout() {
+    this.pegassLoginService.removePegassLogin()
   }
 }

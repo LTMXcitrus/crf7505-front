@@ -51,7 +51,7 @@ export class TranslateRolePipe implements PipeTransform {
       return "CI Alpha";
     }
     if (role === RoleType.CH_VPSP) {
-      return "Chauffeur";
+      return "Chauffeur VPSP";
     }
     if (role === RoleType.CH_VL) {
       return "Chauffeur VL";

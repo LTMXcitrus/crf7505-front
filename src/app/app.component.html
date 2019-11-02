@@ -11,6 +11,16 @@
       <span *ngIf="connectedUser">Unité Locale de Paris {{connectedUser.userStructure}}</span>
     </div>
   </div>
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item *ngIf="isPegassLoggedIn" (click)="pegassLogout()">Se déconnecter de pegass</button>
+    <button mat-menu-item *ngIf="!isPegassLoggedIn" (click)="pegassLogin()">Se connecter à pegass</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="appMenu">
+    <mat-icon *ngIf="isPegassLoggedIn" style="color:lightgreen">check_circle_outline</mat-icon>
+    <mat-icon *ngIf="!isPegassLoggedIn" style="color:red">clear</mat-icon>
+    Pegass
+  </button>
+  <mat-divider vertical="true"></mat-divider>
   <button *ngIf="!isLoggedIn" (click)="openLoginDialog()" mat-button>Se connecter</button>
   <button *ngIf="isLoggedIn" (click)="logout()" mat-button>Se déconnecter</button>
 </mat-toolbar>

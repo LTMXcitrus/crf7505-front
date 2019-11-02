@@ -45,3 +45,8 @@ mat-list, mat-list-item, .navigation-button, .mat-drawer-inner-container {
 .cdk-overlay-pane {
   width: 30%;
 }
+
+.margined {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
