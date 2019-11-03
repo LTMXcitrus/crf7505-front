@@ -89,6 +89,15 @@ export class TranslateRolePipe implements PipeTransform {
     if (role === RoleType.PARTICIPANT_EXT) {
       return "Participant Extérieur";
     }
+    if (role === RoleType.FORMATEUR) {
+      return "Formateur"
+    }
+    if (role === RoleType.CADRE_LOCAL) {
+      return "Cadre local"
+    }
+    if (role === RoleType.TSA) {
+      return "TSA"
+    }
   }
 
 
