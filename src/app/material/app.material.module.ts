@@ -20,7 +20,6 @@ import {
   MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
-import {MaterialTimePickerModule} from "@candidosales/material-time-picker";
 
 @NgModule({
   declarations: [],
