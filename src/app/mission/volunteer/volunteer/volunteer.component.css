@@ -24,7 +24,11 @@ a, button {
 }
 
 .mat-list-text {
-  width: 50%;
+  width: 60% !important;
+}
+
+.list-text {
+  width: 60% !important;
 }
 
 .missing-summary {
