@@ -14,7 +14,7 @@ export class AddVolunteerComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: Volunteer) { }
 
   ngOnInit() {
-    this.data = new Volunteer("", "", RoleType.PARTICIPANT, "")
+    this.data = new Volunteer("", "", RoleType.PARTICIPANT, "", [])
   }
 
   onCancelClick(): void {
