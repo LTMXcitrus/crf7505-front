@@ -1,13 +1,18 @@
 <div class="container">
-  <button mat-raised-button (click)="addVolunteer()"><mat-icon>group_add</mat-icon></button>
+  <button mat-raised-button (click)="addVolunteer()">
+    <mat-icon>group_add</mat-icon>
+  </button>
 
   <mat-list dense>
     <mat-list-item *ngFor="let volunteer of volunteers">
       <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn" (click)="remove(volunteer)">
         <mat-icon>delete</mat-icon>
       </button>
-      <h3 mat-line>{{volunteer.firstname}} {{volunteer.lastname}}</h3>
-      <p mat-line> {{volunteer.role | translateRole}} </p>
+      <div class="mat-list-text">
+        <h3 mat-line>{{volunteer.firstname}} {{volunteer.lastname}}</h3>
+        <p mat-line>{{volunteer.role | translateRole}} </p>
+      </div>
+      <span class="list-text"><b><u>Intéressé par:</u></b> {{interestedInString(volunteer)}}</span>
       <p class="missing-summary">{{volunteer.emailAddress}}</p>
       <span class="fill-remaining-space"></span>
       <button mat-raised-button color="primary" (click)="edit(volunteer)">

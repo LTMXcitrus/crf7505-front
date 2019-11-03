@@ -17,6 +17,13 @@
   </mat-form-field>
 
   <mat-form-field>
+    <mat-label>Toppings</mat-label>
+    <mat-select [(value)]="volunteer.interestedIn" multiple>
+      <mat-option *ngFor="let role of possibleInterests" [value]="role">{{role | translateRole}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
     <input matInput placeholder="addresse mail" [(ngModel)]="volunteer.emailAddress" name="emailAddress"
            required>
   </mat-form-field>

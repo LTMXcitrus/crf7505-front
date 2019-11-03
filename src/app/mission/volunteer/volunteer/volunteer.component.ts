@@ -6,6 +6,7 @@ import {AddVolunteerComponent} from '../add-volunteer/add-volunteer.component';
 import {DeleteConfirmationComponent} from '../delete-confirmation/delete-confirmation.component';
 import {EditVolunteerComponent} from '../edit-volunteer/edit-volunteer.component';
 import {DialogSpinnerComponent} from '../../../dialog-spinner/dialog-spinner.component';
+import {TranslateRolePipe} from "../../../translate-role.pipe";
 
 @Component({
   selector: 'app-volunteer',
@@ -13,6 +14,7 @@ import {DialogSpinnerComponent} from '../../../dialog-spinner/dialog-spinner.com
   styleUrls: ['./volunteer.component.css']
 })
 export class VolunteerComponent implements OnInit {
+  private rolePipe: TranslateRolePipe = new TranslateRolePipe();
 
   volunteers: Volunteer[];
 
@@ -57,6 +59,7 @@ export class VolunteerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
+        console.log(data);
         this.editVolunteer(data);
       }
     });
@@ -67,5 +70,14 @@ export class VolunteerComponent implements OnInit {
       this.volunteers = this.volunteers.filter(v => v.emailAddress !== volunteer.emailAddress);
       this.volunteers.push(volunteer);
     });
+  }
+
+  interestedInString(volunteer: Volunteer) {
+    if(volunteer.interestedIn && volunteer.interestedIn.length > 0) {
+      return volunteer.interestedIn
+        .map(role => this.rolePipe.transform(role))
+        .join(', ')
+    }
+    return `rôles par défault pour ${this.rolePipe.transform(volunteer.role)}`
   }
 }

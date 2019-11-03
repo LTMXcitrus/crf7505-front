@@ -98,6 +98,9 @@ export class TranslateRolePipe implements PipeTransform {
     if (role === RoleType.TSA) {
       return "TSA"
     }
+    if(role=== RoleType.CADRE_ASTREINTE_SANTE) {
+      return "Cadre d'astreinte de santé"
+    }
   }
 
 

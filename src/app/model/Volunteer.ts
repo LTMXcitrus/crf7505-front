@@ -4,7 +4,8 @@ export class Volunteer {
   constructor(public firstname: string,
               public lastname: string,
               public role: RoleType,
-              public emailAddress: string) {
+              public emailAddress: string,
+              public interestedIn: RoleType[]) {
 
   }
 }
