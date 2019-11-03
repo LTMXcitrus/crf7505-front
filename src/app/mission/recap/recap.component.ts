@@ -11,9 +11,9 @@ import {DialogSpinnerComponent} from '../../dialog-spinner/dialog-spinner.compon
 import {CrfMail} from '../../model/CrfMail';
 import {groupBy} from '../../utils';
 import {DialogMailEditorComponent} from '../mails/dialog-mail-editor/dialog-mail-editor.component';
-import {TranslateRolePipe} from "../../translate-role.pipe";
 import {Activities} from "../../model/Activities";
 import {DeleteMissionConfirmationComponent} from "./delete-mission-confirmation/delete-mission-confirmation.component";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-recap',
@@ -39,6 +39,7 @@ export class RecapComponent implements OnInit {
 
   constructor(private crfService: CrfService,
               private pegassLoginService: PegassLoginService,
+              private authService: AuthService,
               private dialog: MatDialog) {
   }
 
@@ -132,7 +133,7 @@ export class RecapComponent implements OnInit {
         header: '',
         footer: '',
         subject: 'Les missions de la semaine',
-        respMission: ''
+        respMission: this.authService.getConnectedUser().sub
       }
     });
     mailEditorRef.afterClosed().subscribe(data => {

@@ -16,8 +16,17 @@ export class VolunteerFormComponent implements OnInit {
     RoleType.PSC1,
     RoleType.PSE1,
     RoleType.PSE2,
-    RoleType.CH_VPSP,
     RoleType.CI
+  ];
+
+  possibleInterests: RoleType[] = [
+    RoleType.PARTICIPANT,
+    RoleType.PSC1,
+    RoleType.PSE1,
+    RoleType.PSE2,
+    RoleType.CH_VPSP,
+    RoleType.CI,
+    RoleType.TSA
   ];
 
   constructor() {
