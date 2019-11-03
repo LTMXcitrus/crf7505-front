@@ -5,7 +5,7 @@
     <form class="example-form">
 
       <mat-form-field>
-        <input matInput placeholder="Username"
+        <input matInput placeholder="Prénom"
                name="username"
                [(ngModel)]="data.username"
                (keyup.enter)="dialogRef.close(data)"
@@ -36,7 +36,7 @@
   <mat-dialog-content>
     <form class="example-form">
       <mat-form-field>
-        <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" required>
+        <input matInput placeholder="Prénom" [(ngModel)]="data.username" name="username" required>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="mot de passe" [(ngModel)]="data.password" type="password" name="password"
