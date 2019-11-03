@@ -34,7 +34,8 @@ import {RecapMailsComponent} from './mission/mails/recap-mails/recap-mails.compo
 import {DialogMailEditorComponent} from './mission/mails/dialog-mail-editor/dialog-mail-editor.component';
 import {MissingSummaryComponent} from './mission/recap/missing-summary/missing-summary.component';
 import {EditMissingRolesDialogComponent} from './mission/recap/edit-missing-roles-dialog/edit-missing-roles-dialog.component';
-import { SafeHtmlPipe } from './safe-html.pipe';
+import {SafeHtmlPipe} from './safe-html.pipe';
+import { DeleteMissionConfirmationComponent } from './mission/recap/delete-mission-confirmation/delete-mission-confirmation.component';
 
 
 export const DATE_FORMAT = {
@@ -75,7 +76,8 @@ export const DATE_FORMAT = {
     DialogMailEditorComponent,
     MissingSummaryComponent,
     EditMissingRolesDialogComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    DeleteMissionConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ export const DATE_FORMAT = {
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT}
+    {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT},
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -102,7 +105,8 @@ export const DATE_FORMAT = {
     EditVolunteerComponent,
     DeleteConfirmationComponent,
     DialogMailEditorComponent,
-    EditMissingRolesDialogComponent
+    EditMissingRolesDialogComponent,
+    DeleteMissionConfirmationComponent
   ]
 })
 export class AppModule {

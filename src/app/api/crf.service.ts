@@ -6,7 +6,6 @@ import {VolunteerTraining} from '../model/VolunteerTraining';
 import {Observable} from 'rxjs';
 import {Volunteer} from '../model/Volunteer';
 import {CrfMail} from '../model/CrfMail';
-import {Mission} from '../model/Mission';
 import {Activities} from "../model/Activities";
 
 @Injectable({
@@ -21,12 +20,12 @@ export class CrfService {
     return this.http.post<VolunteerTraining[]>(environment.baseUrl + '/volunteer/trainings', pegassLogin);
   }
 
-  loadAllMissions(pegassLogin: PegassLogin, start: string, end: string): Observable<Activities> {
+  loadAllMissions(pegassLogin: PegassLogin, start: string, end: string, addedDaysForLocalMissions: number): Observable<Activities> {
     const body = {
       username: pegassLogin.username,
       password: pegassLogin.password
     };
-    return this.http.post<Activities>( `${environment.baseUrl}/mission/activities?start=${start}&end=${end}`, body);
+    return this.http.post<Activities>( `${environment.baseUrl}/mission/activities?start=${start}&end=${end}&addedDaysForLocalMissions=${addedDaysForLocalMissions}`, body);
   }
 
   generateMails(activities: Activities, subject: string, header: string, footer: string, respMission: string): Observable<CrfMail[]> {
