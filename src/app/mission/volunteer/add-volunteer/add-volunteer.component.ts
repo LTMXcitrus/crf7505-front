@@ -11,10 +11,11 @@ import {RoleType} from "../../../model/RoleType";
 export class AddVolunteerComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddVolunteerComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Volunteer) { }
+              @Inject(MAT_DIALOG_DATA) public data: Volunteer) {
+  }
 
   ngOnInit() {
-    this.data = new Volunteer("", "", RoleType.PARTICIPANT, "")
+    this.data = new Volunteer("", "", RoleType.PARTICIPANT, "", [])
   }
 
   onCancelClick(): void {

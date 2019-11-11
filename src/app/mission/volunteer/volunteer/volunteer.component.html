@@ -1,10 +1,21 @@
 <div class="container">
-  <button mat-raised-button (click)="addVolunteer()">
-    <mat-icon>group_add</mat-icon>
-  </button>
+  <div class="tools">
+    <div>
+      <button mat-raised-button (click)="addVolunteer()">
+        <mat-icon>group_add</mat-icon>
+      </button>
+      <button mat-raised-button (click)="load()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field>
+      <input matInput (keyup)="filterVolunteer()" placeholder="Filtrer" [(ngModel)]="search" name="search-bar">
+    </mat-form-field>
+  </div>
 
   <mat-list dense>
-    <mat-list-item *ngFor="let volunteer of volunteers">
+    <mat-list-item *ngFor="let volunteer of filteredVolunteers">
       <button mat-raised-button mat-list-icon class="mat-list-left-button" color="warn" (click)="remove(volunteer)">
         <mat-icon>delete</mat-icon>
       </button>

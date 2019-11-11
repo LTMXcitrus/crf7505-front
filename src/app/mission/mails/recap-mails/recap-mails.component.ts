@@ -32,4 +32,8 @@ export class RecapMailsComponent implements OnInit {
       }
     })
   }
+
+  removeMail(crfMail: CrfMail) {
+    this.crfMails = this.crfMails.filter(mail => mail !== crfMail);
+  }
 }
