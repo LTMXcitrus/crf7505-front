@@ -17,17 +17,15 @@ export class VolunteerComponent implements OnInit {
   private rolePipe: TranslateRolePipe = new TranslateRolePipe();
 
   volunteers: Volunteer[];
+  filteredVolunteers: Volunteer[] = [];
+  search = "";
 
   constructor(private crfService: CrfService,
               private dialog: MatDialog) {
   }
 
   ngOnInit() {
-    const spinnerRef = this.dialog.open(DialogSpinnerComponent)
-    this.crfService.retrieveVolunteers().subscribe(volunteers => {
-      this.volunteers = volunteers;
-      spinnerRef.close();
-    });
+    this.load();
   }
 
   addVolunteer() {
@@ -73,11 +71,39 @@ export class VolunteerComponent implements OnInit {
   }
 
   interestedInString(volunteer: Volunteer) {
-    if(volunteer.interestedIn && volunteer.interestedIn.length > 0) {
+    if (volunteer.interestedIn && volunteer.interestedIn.length > 0) {
       return volunteer.interestedIn
         .map(role => this.rolePipe.transform(role))
         .join(', ')
     }
     return `rôles par défault pour ${this.rolePipe.transform(volunteer.role)}`
   }
+
+  load() {
+    const spinnerRef = this.dialog.open(DialogSpinnerComponent)
+    this.crfService.retrieveVolunteers().subscribe(volunteers => {
+      this.volunteers = volunteers.sort(this.compareVolunteer);
+      this.filteredVolunteers = volunteers.sort(this.compareVolunteer);
+      spinnerRef.close();
+    });
+  }
+
+  filterVolunteer() {
+    if (!this.search || this.search.length === 0) {
+      this.filteredVolunteers = this.volunteers;
+    } else {
+      this.filteredVolunteers = this.volunteers.filter(volunteer => {
+        return this.searchTerms(volunteer).toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1
+      }).sort(this.compareVolunteer);
+    }
+  }
+
+  searchTerms(volunteer: Volunteer) {
+    return (volunteer.lastname + " " + volunteer.firstname)
+      + (volunteer.firstname + " " + volunteer.lastname)
+      + (" " +volunteer.emailAddress)
+  }
+
+  compareVolunteer = (a, b) => (a.firstname > b.firstname) ? 1 : -1;
+
 }

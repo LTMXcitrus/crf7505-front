@@ -34,3 +34,8 @@ a, button {
 .missing-summary {
   width: 100%;
 }
+
+.tools {
+  display: flex;
+  flex-direction: column;
+}
