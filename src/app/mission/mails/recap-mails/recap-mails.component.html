@@ -1,11 +1,19 @@
+<div *ngIf="crfMails && crfMails.length > 0" class="send-recap">
+  <button mat-raised-button (click)="sendRecap()">Envoyer le récap</button>
+</div>
+<div *ngIf="!crfMails || crfMails.length === 0" class="container">
+  <span>Aucun mail n'a encore été généré.</span>
+</div>
 <mat-tab-group>
   <mat-tab *ngFor="let mail of crfMails" [label]="mail.recipient">
     <div class="container">
-      <button mat-raised-button (click)="sendRecap()">Envoyer le récap</button>
+      <div class="send-recap">
+        <button mat-raised-button color="warn" (click)="removeMail(mail)"><mat-icon>close</mat-icon> Supprimer le mail</button>
+      </div>
       <p>[{{mail.subject}}]</p>
       <br/>
-<!--      <p-editor [(ngModel)]="mail.text"></p-editor>-->
-<!--      <p-editor [(ngModel)]="mail.text" [style]="{'height':'320px'}"></p-editor>-->
+      <!--      <p-editor [(ngModel)]="mail.text"></p-editor>-->
+      <!--      <p-editor [(ngModel)]="mail.text" [style]="{'height':'320px'}"></p-editor>-->
       <div [innerHTML]="mail.text | safeHtml"></div>
     </div>
   </mat-tab>
