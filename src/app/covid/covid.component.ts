@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {CrfService} from "../api/crf.service";
 import * as moment from 'moment';
+import {MatDialog} from "@angular/material";
+import {MissionDetailsComponent} from "../mission/recap/mission-details/mission-details.component";
+import {DispoDetailDialogComponent} from "./dispo-detail-dialog/dispo-detail-dialog.component";
 
 export interface Dispo {
   email: string
@@ -103,7 +106,8 @@ export class CovidComponent implements OnInit {
   start: string;
   end: string;
 
-  constructor(private crfService: CrfService) {
+  constructor(private crfService: CrfService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -111,7 +115,9 @@ export class CovidComponent implements OnInit {
   }
 
   showDispoDetails(dispo: Dispo) {
-    alert(dispo.firstname)
+    this.dialog.open(DispoDetailDialogComponent, {
+      data: dispo
+    });
   }
 
   search() {
@@ -129,4 +135,7 @@ export class CovidComponent implements OnInit {
     this.crfService.searchDispos(search).subscribe(res => this.dataSource = res.dispos);
   }
 
+  refresh() {
+    this.crfService.refreshDispos().subscribe(res => this.dataSource = res.dispos)
+  }
 }

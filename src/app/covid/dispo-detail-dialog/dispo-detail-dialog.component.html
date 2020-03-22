@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{data.firstname}} {{data.lastname}} - {{data.roleInUl}} - {{data.ul}}</h1>
+<p>
+  <b>Téléphone:</b> {{data.phone}}
+</p>
+<p>
+  <b>Email:</b> {{data.email}}
+</p>
+<p>
+  <b>Uniforme:</b> {{data.uniformeStatus}}
+</p>
+<p>
+  <b>Fait partie des personnes vulnérables:</b> {{data.vulnerable}}
+</p>
+<p>
+  <b>Compétences:</b> {{data.competences.join(', ')}}
+</p>
+<p>
+  <b>Créneaux:</b>
+<ul>
+  <li *ngFor="let creneau of data.creneauxRepresentations">{{creneau}}</li>
+</ul>
+

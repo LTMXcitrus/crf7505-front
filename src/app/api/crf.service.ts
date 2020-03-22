@@ -64,4 +64,8 @@ export class CrfService {
   searchDispos(search: DispoSearch) {
     return this.http.post<DispoResponse>(`${environment.baseUrl}/covid/dispos`, search);
   }
+
+  refreshDispos() {
+    return this.http.get<DispoResponse>(`${environment.baseUrl}/covid/dispos/refresh`);
+  }
 }
