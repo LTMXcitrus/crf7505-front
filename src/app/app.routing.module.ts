@@ -6,9 +6,10 @@ import {AuthGuard} from './auth.guard';
 import {FormatComponent} from './format/format.component';
 import {MissionComponent} from './mission/mission.component';
 import {MotComponent} from './mot/mot.component';
+import {CovidComponent} from "./covid/covid.component";
 
 const routes: Routes = [
-  {path: '', component: HomepageComponent},
+  {path: '', component: CovidComponent},//component: HomepageComponent},
   {path: 'format', component: FormatComponent, canActivate: [AuthGuard]},
   {path: 'mission', component: MissionComponent, canActivate: [AuthGuard]},
   {path: 'mot', component: MotComponent, canActivate: [AuthGuard]}
@@ -25,4 +26,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

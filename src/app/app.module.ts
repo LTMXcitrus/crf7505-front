@@ -36,6 +36,7 @@ import {MissingSummaryComponent} from './mission/recap/missing-summary/missing-s
 import {EditMissingRolesDialogComponent} from './mission/recap/edit-missing-roles-dialog/edit-missing-roles-dialog.component';
 import {SafeHtmlPipe} from './safe-html.pipe';
 import { DeleteMissionConfirmationComponent } from './mission/recap/delete-mission-confirmation/delete-mission-confirmation.component';
+import { CovidComponent } from './covid/covid.component';
 
 
 export const DATE_FORMAT = {
@@ -77,7 +78,8 @@ export const DATE_FORMAT = {
     MissingSummaryComponent,
     EditMissingRolesDialogComponent,
     SafeHtmlPipe,
-    DeleteMissionConfirmationComponent
+    DeleteMissionConfirmationComponent,
+    CovidComponent
   ],
   imports: [
     BrowserModule,

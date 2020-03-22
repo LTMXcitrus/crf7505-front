@@ -9,7 +9,7 @@ import {PegassLoginService} from "./pegass-login.service";
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Creuf 7505';
+  title =  'CAD 75'; //'Creuf 7505';
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   isLoggedIn = false;

@@ -1,0 +1,8 @@
+.row-hover {
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}

@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {Volunteer} from '../model/Volunteer';
 import {CrfMail} from '../model/CrfMail';
 import {Activities} from "../model/Activities";
+import {DispoResponse, DispoSearch} from "../covid/covid.component";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class CrfService {
       username: pegassLogin.username,
       password: pegassLogin.password
     };
-    return this.http.post<Activities>( `${environment.baseUrl}/mission/activities?start=${start}&end=${end}&addedDaysForLocalMissions=${addedDaysForLocalMissions}`, body);
+    return this.http.post<Activities>(`${environment.baseUrl}/mission/activities?start=${start}&end=${end}&addedDaysForLocalMissions=${addedDaysForLocalMissions}`, body);
   }
 
   generateMails(activities: Activities, subject: string, header: string, footer: string, respMission: string): Observable<CrfMail[]> {
@@ -54,5 +55,13 @@ export class CrfService {
 
   sendRecap(crfMails: CrfMail[]): Observable<boolean> {
     return this.http.post<boolean>(`${environment.baseUrl}/mission/sendRecap`, crfMails);
+  }
+
+  getDispos() {
+    return this.http.get<DispoResponse>(`${environment.baseUrl}/covid/dispos`)
+  }
+
+  searchDispos(search: DispoSearch) {
+    return this.http.post<DispoResponse>(`${environment.baseUrl}/covid/dispos`, search);
   }
 }
